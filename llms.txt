@@ -1,18 +1,22 @@
-# Quantum Thermometry Feedback — reading routes
+# Quantum Thermometry Feedback — authoritative routes
 
-Canonical question: sharp global minimax log-temperature risk under exactly two batches of fully equilibrated Gibbs probes with one classical feedback update and a pathwise N-qubit budget.
+Question: global minimax squared log-temperature error with exactly two fully equilibrated Gibbs-preparation batches, one classical feedback update, and a pathwise total N-qubit-use budget.
+Main result: R_2^*(N)=Theta(N^(-3/2)). Root-mean-square log error is Theta(N^(-3/4)).
 
-Main result: R_2^*(N)=Theta(N^(-3/2)); r-round lower bound only for general fixed r, exponent 2-2^(1-r). No general matching r>2 hierarchy claimed.
+OVERVIEW: README.md — scientific result, scope and reading routes.
+MODEL: science/model.md — fresh replacement, energy-label sufficiency, arbitrary instruments/memory, loss and charged resources.
+THERMAL FOUNDATION: science/entropy_budget.md — Gibbs Fisher information, entropy-area identity and pointwise quadratic bound.
+CONVERSE: science/two_batch_converse.md — posterior peak, posterior score identity, conditional area and van Trees.
+ATTAINMENT: science/achievability.md — fixed-gap pilot, degenerate blocks, complete smoothed/clipped estimator and rare-error control.
+ROUND LIMITS: science/round_complexity.md — converse-only for general fixed r; necessary log-log batch count for quadratic global precision.
+PHYSICAL MEANING: science/interpretation.md — sensitivity/bandwidth and implementation boundaries.
+ATTRIBUTION: references/RELATED_WORK.md — inherited Bayesian/probe-design ingredients, distinct two-batch contribution and explicit source-access limitation.
+BIBLIOGRAPHY: references/references.bib.
 
-START: README.md — central question, limits and short result table.
-MODEL: science/model.md — replacement contract, energy-label sufficiency, allowed feedback, charged resources and loss.
-THERMAL FOUNDATION: science/entropy_budget.md — Gibbs FI, entropy-area bound and universal pointwise heat-capacity bound.
-CORE CONVERSE: science/two_batch_converse.md — posterior density supremum, exact posterior Fisher identity, second-stage area, van Trees global risk.
-CORE CONSTRUCTION: science/achievability.md — fixed-gap pilot, tuned degenerate blocks, smoothed-logit lemma, rare-error exponential moment.
-SECONDARY THEOREM: science/round_complexity.md — fixed-r lower bound; only necessity of Omega(log log N) feedback rounds for global N^(-2).
-PHYSICAL READING: science/interpretation.md — sensitivity height/bandwidth, memory model, thermalization-time and Hamiltonian engineering qualifications.
-NOVELTY/ATTRIBUTION: references/RELATED_WORK.md — credited global Bayesian results, Mehboudi et al. 2022 closest comparator, new 2026 literature access gap, internal portfolio comparison.
-BIBLIOGRAPHY: references/references.bib — primary sources.
-REPRODUCE: verification/README.md — commands, scoped numerical checks and omitted probability tails.
+LEARNING START: learning/README.md.
+SINGLE ANCHOR: learning/ANCHOR.md — De Pasquale and Stace, Quantum Thermometry, arXiv:1807.05762v1 (2018); selected pages, translated notation and missing project-specific steps.
+CONCEPTUAL MAP: learning/MILESTONES.md — exactly M01–M30; 12 background and 18 narrative targets; dependencies and canonical source routes.
+WORKED EXAMPLES: learning/WORKED_EXAMPLES.md — pilot probabilities, full 1024-use accounting, endpoint counts and interpretation of numerical risk.
+REPRODUCTION: verification/README.md — commands, finite checks, expected output and tail bounds.
 
-Do not conflate local Fisher sensitivity with uniform global error, Gibbs qubit uses with elapsed time, or a converse-only r-round result with matching attainment. The primary source of mathematical statements is science/, not this guide. This is not a personalized coaching document.
+Keep local sensitivity distinct from global risk, squared error from root mean square, qubit uses from elapsed time, and fresh Gibbs replacement from dynamical bath access. The r-round lower bound is not matching attainment for r>2. The source review's sequential probe is not the replacement experiment. Primary research citations are not additional educational anchors. Canonical proofs live in science/; the common learning map contains no personalized coaching or assessment records.
