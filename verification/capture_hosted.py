@@ -1,7 +1,7 @@
-"""Capture real GitHub-rendered pages at an exact commit.
+"""Capture actual GitHub-rendered mathematics at an exact source revision.
 
-Produces accessible-math records and screenshots, not a proof or automatic
-visual sign-off. No login, repository mutation, or external navigation is used.
+The output is evidence for source comparison and visual review, not an
+automatic scientific or presentation-readiness certificate. No login is used.
 """
 from __future__ import annotations
 import argparse
@@ -13,13 +13,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
 from playwright.sync_api import sync_playwright
-
-PAGES = ['README.md', 'science/README.md', 'science/model.md',
-         'science/entropy_budget.md', 'science/two_batch_converse.md',
-         'science/achievability.md', 'science/round_complexity.md',
-         'science/interpretation.md', 'learning/README.md', 'learning/ANCHOR.md',
-         'learning/MILESTONES.md', 'learning/WORKED_EXAMPLES.md',
-         'references/RELATED_WORK.md', 'verification/README.md']
 
 EXTRACT = r'''() => {
   const article = document.querySelector('article.markdown-body') || document.querySelector('.markdown-body');
@@ -53,6 +46,7 @@ EXTRACT = r'''() => {
     }
     const rendered = Boolean(mm || find('svg,.katex-html').length);
     if (!rendered) errors.push('Math host has not rendered');
+    if (!text.trim()) errors.push('Empty accessible mathematics');
     return {rendered, errors, text_source, text: text || ''};
   });
   const errors = [...article.querySelectorAll('.katex-error,mjx-merror,[data-mjx-error]')].map(e=>e.textContent);
@@ -72,6 +66,10 @@ def main() -> None:
     actual = subprocess.check_output(['git','rev-parse','HEAD'], cwd=root, text=True).strip()
     if actual != args.revision:
         raise ValueError('Working revision differs from requested capture')
+    pages = ['README.md']
+    for directory in ['science', 'learning']:
+        pages.extend(str(p.relative_to(root)) for p in sorted((root/directory).glob('*.md')))
+    pages.extend(['references/RELATED_WORK.md', 'verification/README.md'])
     out = Path(args.output).resolve()
     out.mkdir(parents=True, exist_ok=True)
     capture = {'schema_version':1, 'repository':repo, 'revision':actual,
@@ -83,7 +81,7 @@ def main() -> None:
         browser = p.chromium.launch()
         context = browser.new_context(viewport={'width':1440,'height':1000}, device_scale_factor=1)
         page = context.new_page()
-        for index, path in enumerate(PAGES):
+        for index, path in enumerate(pages):
             source = subprocess.check_output(['git','show',f'{actual}:{path}'], cwd=root)
             url = f'https://github.com/{repo}/blob/{actual}/{quote(path, safe="/")}'
             item = {'path':path, 'url':url, 'revision':actual,
@@ -103,8 +101,7 @@ def main() -> None:
                 (out/(stem+'.txt')).write_text(extracted['article_text'], encoding='utf-8')
                 (out/(stem+'.html')).write_text(page.content(), encoding='utf-8')
                 page.screenshot(path=str(out/(stem+'.png')), full_page=True)
-                article = page.locator('.markdown-body').first
-                article.screenshot(path=str(out/(stem+'-article.png')))
+                page.locator('.markdown-body').first.screenshot(path=str(out/(stem+'-article.png')))
                 for j, host in enumerate(item['math'], 1):
                     if host['errors'] or not host['rendered']:
                         failed.append(f'{path}: math {j}: {host["errors"]}')
@@ -123,7 +120,7 @@ def main() -> None:
     (out/'hosted-status.json').write_text(json.dumps({'status':'fail' if failed else 'captured', 'failures':failed}, indent=2)+'\n')
     if failed:
         raise SystemExit('\n'.join(failed))
-    print('Capture complete. Source comparison and human visual review remain necessary.')
+    print('Capture complete. Source comparison and visual review remain necessary.')
 
 
 if __name__ == '__main__':

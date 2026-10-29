@@ -1,22 +1,20 @@
-# Quantum Thermometry Feedback — authoritative routes
+# Quantum Thermometry Feedback — reading routes
 
-Question: global minimax squared log-temperature error with exactly two fully equilibrated Gibbs-preparation batches, one classical feedback update, and a pathwise total N-qubit-use budget.
-Main result: R_2^*(N)=Theta(N^(-3/2)). Root-mean-square log error is Theta(N^(-3/4)).
+Question: global minimax squared log-temperature error with two fresh-Gibbs preparation batches, one classical Hamiltonian update and a pathwise N-qubit budget.
+Main theorem: R_2^*(N)=Theta(N^(-3/2)). The general fixed-r statement is a lower bound, not a matching hierarchy.
 
-OVERVIEW: README.md — scientific result, scope and reading routes.
-MODEL: science/model.md — fresh replacement, energy-label sufficiency, arbitrary instruments/memory, loss and charged resources.
-THERMAL FOUNDATION: science/entropy_budget.md — Gibbs Fisher information, entropy-area identity and pointwise quadratic bound.
-CONVERSE: science/two_batch_converse.md — posterior peak, posterior score identity, conditional area and van Trees.
-ATTAINMENT: science/achievability.md — fixed-gap pilot, degenerate blocks, complete smoothed/clipped estimator and rare-error control.
-ROUND LIMITS: science/round_complexity.md — converse-only for general fixed r; necessary log-log batch count for quadratic global precision.
-PHYSICAL MEANING: science/interpretation.md — sensitivity/bandwidth and implementation boundaries.
-ATTRIBUTION: references/RELATED_WORK.md — inherited Bayesian/probe-design ingredients, distinct two-batch contribution and explicit source-access limitation.
-BIBLIOGRAPHY: references/references.bib.
+OVERVIEW: README.md — question, result, resources and navigation.
+STUDY: learning/README.md — shared learning route.
+SINGLE ANCHOR: learning/ANCHOR.md — De Pasquale and Stace, Quantum Thermometry, arXiv:1807.05762v1 (2018); verified page/equation pointers, notation and scope bridge.
+CONCEPTUAL MAP: learning/MILESTONES.md — exactly M01–M30, with 14 background and 16 narrative targets; dependencies and canonical scientific sources.
+WORKED EXPLANATION: learning/TUTORIAL.md — counting, global loss, 256-qubit example, posterior obstruction and rare-error accounting.
+MODEL: science/model.md — full replacement, energy-label sufficiency, feedback and quantum memory.
+FOUNDATION: science/entropy_budget.md — integrated sensitivity area and pointwise heat capacity.
+CONVERSE: science/two_batch_converse.md — posterior Fisher identity, posterior peak, van Trees.
+CONSTRUCTION: science/achievability.md — pilot, tuned degenerate blocks, smoothed logit, exponential moment.
+ROUNDS: science/round_complexity.md — fixed-r lower bounds and necessary log-log depth only.
+PHYSICAL MEANING: science/interpretation.md — sensitivity bandwidth and unpaid implementation costs.
+ATTRIBUTION: references/RELATED_WORK.md and references/references.bib — inherited ingredients, comparisons and literature-access limits.
+REPRODUCE: verification/README.md, verification/checks.py and verification/learning_checks.py.
 
-LEARNING START: learning/README.md.
-SINGLE ANCHOR: learning/ANCHOR.md — De Pasquale and Stace, Quantum Thermometry, arXiv:1807.05762v1 (2018); selected pages, translated notation and missing project-specific steps.
-CONCEPTUAL MAP: learning/MILESTONES.md — exactly M01–M30; 12 background and 18 narrative targets; dependencies and canonical source routes.
-WORKED EXAMPLES: learning/WORKED_EXAMPLES.md — pilot probabilities, full 1024-use accounting, endpoint counts and interpretation of numerical risk.
-REPRODUCTION: verification/README.md — commands, finite checks, expected output and tail bounds.
-
-Keep local sensitivity distinct from global risk, squared error from root mean square, qubit uses from elapsed time, and fresh Gibbs replacement from dynamical bath access. The r-round lower bound is not matching attainment for r>2. The source review's sequential probe is not the replacement experiment. Primary research citations are not additional educational anchors. Canonical proofs live in science/; the common learning map contains no personalized coaching or assessment records.
+Do not conflate mean-square error with root error, local sensitivity with global risk, Gibbs qubit uses with elapsed time, or a converse with attainment. The authoritative mathematical claims are in science/. Personal tutorial procedures and learner records are not part of this repository.

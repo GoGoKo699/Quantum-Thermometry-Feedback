@@ -1,15 +1,11 @@
-# Repository scientific integrity notes
+# Scientific integrity and maintenance
 
-Read [science/README.md](science/README.md) before changing any mathematical claim. Exact assumptions and quantifiers are in [science/model.md](science/model.md); sources and inherited results are in [references/RELATED_WORK.md](references/RELATED_WORK.md).
+Read [the scientific index](science/README.md) and [the model](science/model.md) before changing a claim. The sharp result is the two-batch global minimax squared log-temperature risk of order N to the power minus 3/2, with fresh Gibbs replacement and a pathwise total qubit budget. Its [converse](science/two_batch_converse.md) and [attaining construction](science/achievability.md) have matching assumptions.
 
-The central supported theorem is the sharp two-batch global minimax squared log-temperature risk of order N to the power minus three halves, under full Gibbs replacement and a pathwise total qubit budget. Its universal lower bound is [science/two_batch_converse.md](science/two_batch_converse.md); its matching constructive upper bound is [science/achievability.md](science/achievability.md). The root-mean-square error has exponent minus three quarters.
+Preserve the converse-only status of the [general round-count results](science/round_complexity.md). Necessary log-log depth for quadratic global risk is not an attaining schedule. Keep local sensitivity distinct from global error, mean-square error distinct from root error, and counted equilibrium samples distinct from thermalization time or hardware-local implementation.
 
-The fixed-r extension in [science/round_complexity.md](science/round_complexity.md) is converse-only for more than two batches. The necessary log-log batch count for quadratic risk is not a matching scheme.
+The one selected educational anchor is **De Pasquale and Stace, Quantum Thermometry, arXiv:1807.05762v1 (2018)**. The [bridge](learning/ANCHOR.md), [thirty milestones](learning/MILESTONES.md) and [tutorial](learning/TUTORIAL.md) are shared conceptual material. Preserve the M01–M30 dependency order and 14/16 phase allocation unless a substantive scientific change justifies revision. Do not add personal tests, answers, coaching instructions or progress records.
 
-Preserve the distinctions between global risk and local sensitivity, full Gibbs samples and dynamical bath access, sample count and elapsed time, arbitrary many-body Hamiltonians and local laboratory couplings. Finite numerical checks and assistant agreement are not independent proof certification.
+Run `python verification/checks.py` and `python verification/learning_checks.py` after relevant changes. Check affected source links, notation and attribution. These commands do not establish hosted rendering: inspect mathematical content and layout separately before claiming visual readiness. A passed finite test is not a proof or an independent expert review.
 
-Run `python verification/checks.py` for code checks. Keep the expected output, proof statements and reproduction documentation consistent. A source/test pass does not establish correct rendering in GitHub's hosted viewer; inspect representative equations and their visible contents separately.
-
-The single selected educational anchor is De Pasquale and Stace, Quantum Thermometry, arXiv:1807.05762v1 (2018). [learning/ANCHOR.md](learning/ANCHOR.md) owns its source bridge, [learning/MILESTONES.md](learning/MILESTONES.md) the 12-background/18-narrative map M01–M30, and [learning/WORKED_EXAMPLES.md](learning/WORKED_EXAMPLES.md) the common examples. Preserve the settled selection unless a substantive scientific change makes it unsuitable or the author changes it. Primary research citations do not add educational prerequisites.
-
-Keep personalized coaching, assessments, answers, progress and private editorial records outside this public scientific repository. Do not add publication-targeting process text to the reader-facing account. Preserve source provenance and load-bearing limitations during cleanup.
+Keep the connected account under science/, the primary comparison under references/, and useful learning routes under learning/. Preserve license and privacy. Do not publish private workflow records, venue judgments or personal continuity archives in this scientific repository.

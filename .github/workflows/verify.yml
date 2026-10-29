@@ -39,7 +39,7 @@ jobs:
         run: |
           set -euo pipefail
           .venv/bin/python source/verification/checks.py | tee evidence/science.txt
-          .venv/bin/python source/verification/check_learning.py | tee evidence/learning.json
+          .venv/bin/python source/verification/learning_checks.py | tee evidence/learning.txt
       - name: Capture real hosted mathematics and screenshots
         shell: bash
         run: |

@@ -1,27 +1,18 @@
 # Learn Quantum Thermometry Feedback
 
-A thermometer can be very sensitive near one temperature and nearly useless elsewhere. This project asks what happens when the unknown temperature spans a fixed interval and there is only one opportunity to retune the thermometer after seeing data.
+The question is what a single opportunity to retune an equilibrium thermometer buys when its temperature is initially unknown over a fixed interval. The sharp answer concerns global squared log-temperature error, not sensitivity evaluated at a temperature already known.
 
-The single educational anchor is **Antonella De Pasquale and Thomas M. Stace, _Quantum Thermometry_, arXiv:1807.05762v1 (2018)**. Start with the [source-to-project bridge](ANCHOR.md), which selects the relevant pages, translates notation and distinguishes the review's local precision statements from this project's global risk theorem.
+The single educational anchor is **De Pasquale and Stace, _Quantum Thermometry_, arXiv:1807.05762v1 (2018)**. Use the [source bridge](ANCHOR.md) for exact locations and translated notation. No complete-book reading assignment is needed.
 
-The [30-milestone map](MILESTONES.md) contains **12 background/preliminaries targets and 18 narrative/innovation targets**. The first phase assembles the statistical and thermal ingredients into the complete experiment. The second connects the information bound and the attaining construction, ending with their physical interpretation. The map is common to all readers; it is not an assessment record or a prerequisite to reading the science.
+Start with the [30-milestone map](MILESTONES.md), then the [worked tutorial](TUTORIAL.md). The map has **14 background/preliminaries targets** and **16 narrative/innovation targets**: the first phase assembles one complete experiment; the second assembles its obstruction, attaining estimator and physical meaning. Each target records its dependencies and scientific sources. It describes the project independently of any reader's assessment history.
 
-## Reading routes
-
-| Aim | Route |
+| Reader's question | Route |
 |---|---|
-| Understand the physical question | [Worked examples](WORKED_EXAMPLES.md) → [interpretation](../science/interpretation.md) |
-| Follow the whole conceptual story | [Anchor bridge](ANCHOR.md) → [M01–M30](MILESTONES.md) → [science index](../science/README.md) |
-| Inspect the impossibility argument | [Model](../science/model.md) → [entropy budget](../science/entropy_budget.md) → [two-batch converse](../science/two_batch_converse.md) |
-| Inspect the implementation and its statistics | [Construction](../science/achievability.md) → [worked numerical example](WORKED_EXAMPLES.md) → [verification](../verification/README.md) |
-| Check what is new or remains unproved | [Related work](../references/RELATED_WORK.md) → [round-count limits](../science/round_complexity.md) |
+| How does a qubit tell us a temperature? | [Counting and likelihood](TUTORIAL.md#one-counting-thermometer) |
+| Why is local sensitivity insufficient? | [A narrow peak is not a global guarantee](TUTORIAL.md#a-narrow-peak-is-not-a-global-guarantee) |
+| What is the complete one-feedback procedure? | [A finite worked experiment](TUTORIAL.md#a-finite-worked-experiment) |
+| Why can no allowed two-batch policy improve the exponent? | [Posterior-information explanation](TUTORIAL.md#why-one-update-has-a-limit), then [the converse](../science/two_batch_converse.md) |
+| Where are the exact assumptions and full proofs? | [Scientific index](../science/README.md) |
+| Which conclusions are inherited, new, or unproved? | [Related work](../references/RELATED_WORK.md) and [scope](../science/interpretation.md) |
 
-The central result concerns **mean squared logarithmic error**, not its square root:
-
-```math
-R_2^*(N)=\Theta(N^{-3/2}).
-```
-
-Thus the corresponding root-mean-square logarithmic error has order N to the power minus three quarters. All calibration and final-readout thermalized qubits count toward N. The result does not establish a thermalization-time advantage.
-
-The shared learning materials explain the project. Exact quantifiers, proofs and research citations remain in their authoritative [science](../science/README.md) and [reference](../references/RELATED_WORK.md) pages.
+The research-level inequalities and rare-event proof are developed in the repository. The anchor explains their thermometric foundation; it does not replace them. [Verification](../verification/README.md) provides executable finite checks, not an alternative to the proofs.

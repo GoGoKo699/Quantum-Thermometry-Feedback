@@ -2,64 +2,60 @@
 
 **One feedback update changes the optimal global precision exponent of equilibrium thermometry.**
 
-A thermometer can be highly sensitive near one temperature but uninformative elsewhere. When the unknown temperature lies in a fixed positive interval and the Hamiltonian may be retuned only once after calibration, the best possible mean squared logarithmic error is
+A temperature is unknown on a fixed interval with positive, finite endpoints. All calibration and measurement probes share a budget of N thermalized-qubit uses. With two Gibbs-preparation batches and one intervening Hamiltonian update, the optimal worst-case squared logarithmic temperature error obeys
 
 ```math
-R_2^*(N)=\Theta(N^{-3/2}).
+R_2^*(N;[T_-,T_+])=\Theta(N^{-3/2}).
 ```
 
-N counts **all thermalized qubits in both batches**, including the pilot. This is a global minimax statement valid for biased estimators, not an inference from a local quantum Cramér–Rao bound. The corresponding root-mean-square logarithmic error has order N to the power minus three quarters.
+This is a global minimax mean-square error law, including biased estimators and unfavorable calibration records. It is not inferred from a local Cramer–Rao bound or a free preliminary estimate.
 
-## Principal results
+## Results and their scope
 
-| Task | Supported result | Proof |
+| Question | Supported answer | Proof |
 |---|---|---|
-| One nonadaptive Gibbs batch | Squared global risk of order N to the power minus one; an inherited benchmark | [Attribution](references/RELATED_WORK.md) and [converse](science/two_batch_converse.md) |
-| Two Gibbs batches, one feedback update | Matching lower and upper risk bounds of order N to the power minus three halves | [Lower bound](science/two_batch_converse.md), [construction](science/achievability.md) |
-| Arbitrary fixed r batches | Lower bound with exponent 2 minus 2 to the power 1 minus r; matching attainment is not claimed beyond two | [Round complexity](science/round_complexity.md) |
-| Desired global squared risk of order one over N squared | At least log-base-two of ln N minus a constant batches are necessary; necessity only | [Uniform round bound](science/round_complexity.md) |
+| One fixed, nonadaptive batch | Mean-square error of order N to the power minus 1; inherited benchmark | [Attribution](references/RELATED_WORK.md) |
+| Two batches, one Hamiltonian update | Sharp mean-square error of order N to the power minus 3/2 | [Converse](science/two_batch_converse.md) and [attainment](science/achievability.md) |
+| Retained quantum memory | Does not evade the converse under fresh Gibbs replacement | [Model and sufficiency](science/model.md) |
+| A fixed number r of batches | Lower-bound exponent 2 - 2 to the power (1 - r); no general matching construction asserted | [Round-count converse](science/round_complexity.md) |
+| Desired quadratic global precision | Requires at least log-base-two of log N, up to an additive constant, batches; necessity only | [Uniform depth bound](science/round_complexity.md) |
 
-The central mechanism is a finite **entropy–sensitivity-area budget**. A newly tuned Hamiltonian can exploit that area only to the extent that the calibration posterior is concentrated. A fixed-gap pilot followed by calibrated degenerate thermal blocks attains the two-batch limit, including unfavorable pilot and final-count outcomes.
+The mechanism is an **entropy budget for integrated thermal sensitivity**. An n-qubit Gibbs thermometer has at most n ln 2 sensitivity area over logarithmic temperature. The first batch determines how concentrated the posterior can become; that concentration limits how much area a retuned second batch can exploit. A calibrated array of degenerate two-level blocks attains the bound without discarding pilot failures.
 
 ## Read the science
 
-Start with the [scientific index](science/README.md), or go directly to a question:
+Start with [the scientific index](science/README.md), then [the exact model](science/model.md). The proof route is [entropy and sensitivity](science/entropy_budget.md) → [posterior-information converse](science/two_batch_converse.md) → [matching construction](science/achievability.md). The [round-count result](science/round_complexity.md) is a separately qualified consequence.
 
-| Question | Authoritative route |
-|---|---|
-| What is supplied, measured and charged? | [Model and energy-label sufficiency](science/model.md) |
-| Why does finite dimension bound integrated thermal sensitivity? | [Entropy budget](science/entropy_budget.md) |
-| Why can no allowed two-batch protocol do better? | [Universal converse](science/two_batch_converse.md) |
-| What protocol and estimator attain the bound? | [Construction and uniform statistical bounds](science/achievability.md) |
-| What follows for more feedback rounds? | [Round complexity](science/round_complexity.md) |
-| What is new, inherited or still uncertain? | [Related work](references/RELATED_WORK.md) and [physical interpretation](science/interpretation.md) |
+For physical meaning and implementation boundaries, read [the interpretation](science/interpretation.md). For inherited results and the specific new contribution, read [Related work](references/RELATED_WORK.md) and the [bibliography](references/references.bib).
 
 ## Learn the project
 
 The single educational anchor is **Antonella De Pasquale and Thomas M. Stace, _Quantum Thermometry_, arXiv:1807.05762v1 (2018)**.
 
-The [source-to-project bridge](learning/ANCHOR.md) selects the relevant pages and translates temperature Fisher information into this project's global logarithmic-loss model. The [30-milestone map](learning/MILESTONES.md) contains **12 background/preliminaries** and **18 narrative/innovation** understanding targets, independent of any reader's assessment history. The [worked examples](learning/WORKED_EXAMPLES.md) explain a complete paid pilot-and-retuning experiment, including saturated counts. The [learning index](learning/README.md) provides shorter reading routes.
+The [source bridge](learning/ANCHOR.md) selects exact pages and equations, translates notation and distinguishes the source's local sensitivity and dynamical examples from this project's global, finite-feedback task. The [30-milestone map](learning/MILESTONES.md) has **14 background/preliminaries** and **16 narrative/innovation** targets. The [worked tutorial](learning/TUTORIAL.md) follows an explicit 256-qubit experiment, including saturated counts, before joining the converse and construction. These are shared scientific learning materials, not personal assessment records.
+
+[Learning entry point](learning/README.md) · [Direct specialist route](science/README.md) · [LLM reading guide](llms.txt)
 
 ## Reproduce
 
-Install the dependencies in [verification/requirements.txt](verification/requirements.txt), then run:
+With the pinned dependencies in [verification/requirements.txt](verification/requirements.txt), run:
 
 ```bash
+python -m pip install -r verification/requirements.txt
 python verification/checks.py
+python verification/learning_checks.py
 ```
 
-The [verification guide](verification/README.md) describes three finite Gibbs spectra, a prior-geometry check, 54 binomial-logit cases and an exact-binomial risk grid at seven budgets and nine temperatures. The committed [expected values](verification/expected.json) include an explicit bound on omitted probability tails. Finite checks supplement the proofs; grid maxima are not certified continuum suprema.
+The [verification guide](verification/README.md) explains the Gibbs and prior identities, uniform-logit finite checks, and exact-binomial risk summations at seven budgets and nine temperatures. The learning check validates milestone structure and the numerical worked example. Finite checks supplement the analytical proofs; they do not certify universal optimality or a continuum worst-case constant.
 
-## Physical scope
+## Physical and statistical boundaries
 
-Each paid thermalization supplies a **fresh, fully equilibrated Gibbs state** for a selected temperature-independent Hamiltonian. All Hamiltonians in a batch are fixed before that batch's outcomes are observed. Arbitrary within-batch interactions, measurements, ancillary processing and retained external quantum memory are allowed by the converse under this replacement contract. The total qubit-use budget is capped on every branch, not merely in expectation.
+Every paid access prepares a **fresh, fully equilibrated Gibbs state** for a chosen temperature-independent Hamiltonian. Input probe correlations do not survive that replacement. Hamiltonians within one batch are fixed before its outcomes are observed; quantum processing, ancillas and retained memory are allowed. The total number of thermalized qubits is bounded on every branch, not only on average.
 
-The attaining protocol uses ideal many-body blocks with one ground level and a highly degenerate excited level. It is diagonal and does not need entanglement. The theorem does not price interaction locality, control work, bath disturbance or equilibration time, and establishes no wall-clock or hardware advantage. Partially thermalizing dynamics and coherent bath access are different models. Matching higher-round attainment and optimal leading constants are not claimed.
+The construction uses an ideal many-body block with one ground level and a large degenerate excited level. It requires no entangled readout, but does not establish a local-interaction implementation, thermalization-time advantage, bounded-control-energy advantage or laboratory speedup. A shrinking prior interval or a partially thermalizing dynamical channel changes the task.
 
-The [literature comparison](references/RELATED_WORK.md) credits earlier global Bayesian thermometry and probe-design results and retains a full-text access limitation for the recent Fan–Pang paper.
+The complete matching result concerns **two batches**. Matching attainment for arbitrary fixed r greater than two, sufficiency of log-log feedback depth, and optimal leading constants are not claimed. The [literature comparison](references/RELATED_WORK.md) retains its stated recent-source full-text access limitation.
 
 ## Purpose and contact
 
 This repository serves as a record of the work and a guide for the author’s self-directed learning. For discussion or potential collaboration, please contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).
-
-[LLM reading guide](llms.txt) · [Science](science/README.md) · [Learning](learning/README.md) · [References](references/references.bib)
