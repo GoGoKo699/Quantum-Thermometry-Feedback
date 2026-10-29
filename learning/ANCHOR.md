@@ -42,7 +42,7 @@ F_H(x)=T^2Q(T)=\frac{c_v}{k_B}.
 With k_B = 1 this becomes
 
 ```math
-F_H(x)=e^{-2x}\operatorname{Var}_x(H)=C_H(x).
+F_H(x)=e^{-2x}\mathrm{Var}_x(H)=C_H(x).
 ```
 
 Do not read the anchor's local root-error formula as a global minimax guarantee. A local Cramer–Rao statement has estimator and regularity conditions; our lower bound uses a fixed smooth prior and van Trees to cover biased estimators. The complete proof is in [the converse](../science/two_batch_converse.md).
