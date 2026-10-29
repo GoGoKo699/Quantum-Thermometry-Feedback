@@ -1,0 +1,54 @@
+name: Science, learning and hosted rendering
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      TARGET_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - name: Fetch the exact public source revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$TARGET_SHA" =~ ^[0-9a-f]{40}$ ]]
+          git clone --no-checkout https://github.com/GoGoKo699/Quantum-Thermometry-Feedback.git source
+          git -C source fetch origin "$TARGET_SHA"
+          git -C source checkout --detach "$TARGET_SHA"
+          mkdir -p evidence
+          git -C source bundle create ../evidence/source.bundle HEAD
+          git -C source rev-parse HEAD HEAD^{tree} > evidence/revision.txt
+      - name: Install the pinned scientific and browser dependencies
+        shell: bash
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install -r source/verification/requirements.txt playwright==1.64.1
+          .venv/bin/python -m playwright install --with-deps chromium
+          .venv/bin/python --version > evidence/python-version.txt
+          .venv/bin/pip freeze > evidence/dependencies.txt
+      - name: Run scientific reproduction and learning checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          .venv/bin/python source/verification/checks.py | tee evidence/science.txt
+          .venv/bin/python source/verification/learning_checks.py | tee evidence/learning.txt
+      - name: Capture real hosted mathematics and screenshots
+        shell: bash
+        run: |
+          .venv/bin/python source/verification/capture_hosted.py --revision "$TARGET_SHA" --output evidence/hosted
+      - name: Preserve inspection evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: thermometry-verification-${{ github.run_id }}
+          path: evidence/
+          retention-days: 7
+          if-no-files-found: error
