@@ -2,66 +2,60 @@
 
 **One feedback update changes the optimal global precision exponent of equilibrium thermometry.**
 
-A thermometer whose temperature is unknown on a fixed, nonshrinking interval must allocate some of its quantum probes to discovering where the thermal response is informative. When the interaction Hamiltonian may be retuned only once, after an initial batch of measurements, the best possible squared logarithmic temperature error is
+A temperature is unknown on a fixed interval with positive, finite endpoints. All calibration and measurement probes share a budget of N thermalized-qubit uses. With two Gibbs-preparation batches and one intervening Hamiltonian update, the optimal worst-case squared logarithmic temperature error obeys
 
-$$
-\boxed{R_2^*(N;[T_-,T_+])=\Theta(N^{-3/2})}.
-$$
+```math
+R_2^*(N;[T_-,T_+])=\Theta(N^{-3/2}).
+```
 
-Here $0<T_-<T_+<\infty$ are fixed, $N$ counts **all thermalized qubits in both batches**, and the two batches comprise one calibration-and-feedback step followed by a final readout. The claim is a global, minimax risk statement, valid for biased estimators; it is not an inference from a local quantum Cramér–Rao bound.
+This is a global minimax mean-square error law, including biased estimators and unfavorable calibration records. It is not inferred from a local Cramer–Rao bound or a free preliminary estimate.
 
-## Results
+## Results and their scope
 
-| Question | Supported answer | Location |
+| Question | Supported answer | Proof |
 |---|---|---|
-| With no Hamiltonian feedback, what is the global minimax error? | $\Theta(N^{-1})$; the converse is an established earlier result, and a fixed-gap qubit protocol attains it | [Baseline and attribution](references/RELATED_WORK.md) |
-| What is possible with exactly two Gibbs batches? | $\Theta(N^{-3/2})$; universal converse and matching construction | [Lower bound](science/two_batch_converse.md), [construction](science/achievability.md) |
-| Does quantum memory circumvent the two-batch converse? | No, under **fresh Gibbs replacement** and classical inter-batch Hamiltonian selection | [Statistical model](science/model.md) |
-| How does the number of batches constrain precision? | For every fixed $r$, $R_r^*(N)\ge c_r N^{-(2-2^{1-r})}$ | [Round complexity](science/round_complexity.md) |
-| How many batches are necessary for a uniform $O(N^{-2})$ risk? | At least $\log_2\log N-O(1)$; **necessity only** | [Round complexity](science/round_complexity.md) |
+| One fixed, nonadaptive batch | Mean-square error of order N to the power minus 1; inherited benchmark | [Attribution](references/RELATED_WORK.md) |
+| Two batches, one Hamiltonian update | Sharp mean-square error of order N to the power minus 3/2 | [Converse](science/two_batch_converse.md) and [attainment](science/achievability.md) |
+| Retained quantum memory | Does not evade the converse under fresh Gibbs replacement | [Model and sufficiency](science/model.md) |
+| A fixed number r of batches | Lower-bound exponent 2 - 2 to the power (1 - r); no general matching construction asserted | [Round-count converse](science/round_complexity.md) |
+| Desired quadratic global precision | Requires at least log-base-two of log N, up to an additive constant, batches; necessity only | [Uniform depth bound](science/round_complexity.md) |
 
-The central mechanism is an **entropy–sensitivity-area budget**. For any $n$-qubit Gibbs thermometer, its heat capacity integrated against logarithmic temperature is at most $n\log 2$. After a first measurement, posterior concentration determines how much of this area a newly tuned Hamiltonian can exploit. This gives the sharp two-batch upper limit on information. A calibrated array of degenerate two-level blocks attains the limit without discarding unsuccessful pilot outcomes.
-
-## What the theorem assumes
-
-- Each use returns a completely equilibrated Gibbs state of a freely selected, temperature-independent Hamiltonian on the charged qubits. A thermalization is a **fresh state-preparation/replacement** operation: an input state or probe–ancilla correlation is not preserved through it.
-- All Hamiltonians in a batch are selected without using outcomes from that same batch. The second batch may depend on the first classical record; arbitrary measurement processing, ancillas, and retained quantum memory are permitted.
-- The total number of thermalized qubits on **every protocol branch** is at most $N$. A fixed compact positive temperature interval is given, but no preliminary temperature estimate is free.
-- The attaining implementation uses an ideal $k$-qubit interaction with one ground level and a $(2^k-1)$-fold excited level. Preparing, engineering, and fully equilibrating such a Hamiltonian may be challenging. The theorem **does not** price thermalization time, interaction locality, control work, or hardware cost.
-
-Accordingly, this is a statement about feedback opportunities under a qubit/Gibbs-sample budget, not an experimental or wall-clock quantum advantage. The construction itself is diagonal and needs no entanglement.
+The mechanism is an **entropy budget for integrated thermal sensitivity**. An n-qubit Gibbs thermometer has at most n ln 2 sensitivity area over logarithmic temperature. The first batch determines how concentrated the posterior can become; that concentration limits how much area a retuned second batch can exploit. A calibrated array of degenerate two-level blocks attains the bound without discarding pilot failures.
 
 ## Read the science
 
-Begin with the [scientific reading route](science/README.md).
+Start with [the scientific index](science/README.md), then [the exact model](science/model.md). The proof route is [entropy and sensitivity](science/entropy_budget.md) → [posterior-information converse](science/two_batch_converse.md) → [matching construction](science/achievability.md). The [round-count result](science/round_complexity.md) is a separately qualified consequence.
 
-| Focus | Authoritative file |
-|---|---|
-| Inputs, outputs, risk, allowed feedback and quantum-memory reduction | [Model](science/model.md) |
-| Gibbs Fisher information and the entropy-area identity | [Entropy and sensitivity budget](science/entropy_budget.md) |
-| Posterior information and the two-batch minimax converse | [Two-batch converse](science/two_batch_converse.md) |
-| Uniformly valid pilot, tuned blocks and smoothed-binomial theorem | [Achievability](science/achievability.md) |
-| Fixed-round lower bounds and necessary feedback depth | [Round complexity](science/round_complexity.md) |
-| Physical explanation, practical boundaries and limiting cases | [Interpretation](science/interpretation.md) |
-| Primary literature and internal nonduplication comparison | [Related work](references/RELATED_WORK.md) |
+For physical meaning and implementation boundaries, read [the interpretation](science/interpretation.md). For inherited results and the specific new contribution, read [Related work](references/RELATED_WORK.md) and the [bibliography](references/references.bib).
 
-## Reproduce the checks
+## Learn the project
 
-With Python, NumPy and SciPy as documented in [verification](verification/README.md), run:
+The single educational anchor is **Antonella De Pasquale and Thomas M. Stace, _Quantum Thermometry_, arXiv:1807.05762v1 (2018)**.
 
-~~~bash
+The [source bridge](learning/ANCHOR.md) selects exact pages and equations, translates notation and distinguishes the source's local sensitivity and dynamical examples from this project's global, finite-feedback task. The [30-milestone map](learning/MILESTONES.md) has **14 background/preliminaries** and **16 narrative/innovation** targets. The [worked tutorial](learning/TUTORIAL.md) follows an explicit 256-qubit experiment, including saturated counts, before joining the converse and construction. These are shared scientific learning materials, not personal assessment records.
+
+[Learning entry point](learning/README.md) · [Direct specialist route](science/README.md) · [LLM reading guide](llms.txt)
+
+## Reproduce
+
+With the pinned dependencies in [verification/requirements.txt](verification/requirements.txt), run:
+
+```bash
 python -m pip install -r verification/requirements.txt
 python verification/checks.py
-~~~
+python verification/learning_checks.py
+```
 
-The checks include a finite-grid *exact-binomial* evaluation of the two-batch estimator at seven budgets, as well as finite Gibbs entropy/Fisher checks and finite scalar-estimator tests. Their expected numerical benchmark is committed alongside the code. **Finite computation does not establish the asymptotic minimax theorem**; the analytical proofs above do.
+The [verification guide](verification/README.md) explains the Gibbs and prior identities, uniform-logit finite checks, and exact-binomial risk summations at seven budgets and nine temperatures. The learning check validates milestone structure and the numerical worked example. Finite checks supplement the analytical proofs; they do not certify universal optimality or a continuum worst-case constant.
 
-## Scientific scope
+## Physical and statistical boundaries
 
-A complete proof is provided for the two-batch theorem and a converse-only extension to arbitrary round counts. No matching optimal fixed-$r>2$ construction, sufficiency of $O(\log\log N)$ rounds, optimal leading constant, or physical time complexity is claimed. Existing adaptive Bayesian thermometry, global logarithmic loss and locally optimal degenerate-probe mechanisms are explicitly credited in the [primary comparison](references/RELATED_WORK.md).
+Every paid access prepares a **fresh, fully equilibrated Gibbs state** for a chosen temperature-independent Hamiltonian. Input probe correlations do not survive that replacement. Hamiltonians within one batch are fixed before its outcomes are observed; quantum processing, ancillas and retained memory are allowed. The total number of thermalized qubits is bounded on every branch, not only on average.
+
+The construction uses an ideal many-body block with one ground level and a large degenerate excited level. It requires no entangled readout, but does not establish a local-interaction implementation, thermalization-time advantage, bounded-control-energy advantage or laboratory speedup. A shrinking prior interval or a partially thermalizing dynamical channel changes the task.
+
+The complete matching result concerns **two batches**. Matching attainment for arbitrary fixed r greater than two, sufficiency of log-log feedback depth, and optimal leading constants are not claimed. The [literature comparison](references/RELATED_WORK.md) retains its stated recent-source full-text access limitation.
 
 ## Purpose and contact
 
 This repository serves as a record of the work and a guide for the author’s self-directed learning. For discussion or potential collaboration, please contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).
-
-[LLM reading guide](llms.txt) · [Verification](verification/README.md) · [References](references/references.bib)

@@ -1,18 +1,20 @@
 # Quantum Thermometry Feedback — reading routes
 
-Canonical question: sharp global minimax log-temperature risk under exactly two batches of fully equilibrated Gibbs probes with one classical feedback update and a pathwise N-qubit budget.
+Question: global minimax squared log-temperature error with two fresh-Gibbs preparation batches, one classical Hamiltonian update and a pathwise N-qubit budget.
+Main theorem: R_2^*(N)=Theta(N^(-3/2)). The general fixed-r statement is a lower bound, not a matching hierarchy.
 
-Main result: R_2^*(N)=Theta(N^(-3/2)); r-round lower bound only for general fixed r, exponent 2-2^(1-r). No general matching r>2 hierarchy claimed.
+OVERVIEW: README.md — question, result, resources and navigation.
+STUDY: learning/README.md — shared learning route.
+SINGLE ANCHOR: learning/ANCHOR.md — De Pasquale and Stace, Quantum Thermometry, arXiv:1807.05762v1 (2018); verified page/equation pointers, notation and scope bridge.
+CONCEPTUAL MAP: learning/MILESTONES.md — exactly M01–M30, with 14 background and 16 narrative targets; dependencies and canonical scientific sources.
+WORKED EXPLANATION: learning/TUTORIAL.md — counting, global loss, 256-qubit example, posterior obstruction and rare-error accounting.
+MODEL: science/model.md — full replacement, energy-label sufficiency, feedback and quantum memory.
+FOUNDATION: science/entropy_budget.md — integrated sensitivity area and pointwise heat capacity.
+CONVERSE: science/two_batch_converse.md — posterior Fisher identity, posterior peak, van Trees.
+CONSTRUCTION: science/achievability.md — pilot, tuned degenerate blocks, smoothed logit, exponential moment.
+ROUNDS: science/round_complexity.md — fixed-r lower bounds and necessary log-log depth only.
+PHYSICAL MEANING: science/interpretation.md — sensitivity bandwidth and unpaid implementation costs.
+ATTRIBUTION: references/RELATED_WORK.md and references/references.bib — inherited ingredients, comparisons and literature-access limits.
+REPRODUCE: verification/README.md, verification/checks.py and verification/learning_checks.py.
 
-START: README.md — central question, limits and short result table.
-MODEL: science/model.md — replacement contract, energy-label sufficiency, allowed feedback, charged resources and loss.
-THERMAL FOUNDATION: science/entropy_budget.md — Gibbs FI, entropy-area bound and universal pointwise heat-capacity bound.
-CORE CONVERSE: science/two_batch_converse.md — posterior density supremum, exact posterior Fisher identity, second-stage area, van Trees global risk.
-CORE CONSTRUCTION: science/achievability.md — fixed-gap pilot, tuned degenerate blocks, smoothed-logit lemma, rare-error exponential moment.
-SECONDARY THEOREM: science/round_complexity.md — fixed-r lower bound; only necessity of Omega(log log N) feedback rounds for global N^(-2).
-PHYSICAL READING: science/interpretation.md — sensitivity height/bandwidth, memory model, thermalization-time and Hamiltonian engineering qualifications.
-NOVELTY/ATTRIBUTION: references/RELATED_WORK.md — credited global Bayesian results, Mehboudi et al. 2022 closest comparator, new 2026 literature access gap, internal portfolio comparison.
-BIBLIOGRAPHY: references/references.bib — primary sources.
-REPRODUCE: verification/README.md — commands, scoped numerical checks and omitted probability tails.
-
-Do not conflate local Fisher sensitivity with uniform global error, Gibbs qubit uses with elapsed time, or a converse-only r-round result with matching attainment. The primary source of mathematical statements is science/, not this guide. This is not a personalized coaching document.
+Do not conflate mean-square error with root error, local sensitivity with global risk, Gibbs qubit uses with elapsed time, or a converse with attainment. The authoritative mathematical claims are in science/. Personal tutorial procedures and learner records are not part of this repository.

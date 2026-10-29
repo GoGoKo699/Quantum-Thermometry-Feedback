@@ -1,13 +1,11 @@
-# Repository scientific integrity notes
+# Scientific integrity and maintenance
 
-Read [science/README.md](science/README.md) before changing any mathematical claim. Exact assumptions and quantifiers are in [science/model.md](science/model.md); sources and inherited results are in [references/RELATED_WORK.md](references/RELATED_WORK.md).
+Read [the scientific index](science/README.md) and [the model](science/model.md) before changing a claim. The sharp result is the two-batch global minimax squared log-temperature risk of order N to the power minus 3/2, with fresh Gibbs replacement and a pathwise total qubit budget. Its [converse](science/two_batch_converse.md) and [attaining construction](science/achievability.md) have matching assumptions.
 
-The central supported theorem is the sharp two-batch global minimax squared log-temperature risk $\Theta(N^{-3/2})$ under full Gibbs replacement and a pathwise total qubit budget. Its universal lower bound is [science/two_batch_converse.md](science/two_batch_converse.md); its matching constructive upper bound is [science/achievability.md](science/achievability.md).
+Preserve the converse-only status of the [general round-count results](science/round_complexity.md). Necessary log-log depth for quadratic global risk is not an attaining schedule. Keep local sensitivity distinct from global error, mean-square error distinct from root error, and counted equilibrium samples distinct from thermalization time or hardware-local implementation.
 
-The fixed-$r$ extension in [science/round_complexity.md](science/round_complexity.md) is **converse-only** for $r>2$. A necessary $\Omega(\log\log N)$ round count for quadratic risk is not a matching scheme.
+The one selected educational anchor is **De Pasquale and Stace, Quantum Thermometry, arXiv:1807.05762v1 (2018)**. The [bridge](learning/ANCHOR.md), [thirty milestones](learning/MILESTONES.md) and [tutorial](learning/TUTORIAL.md) are shared conceptual material. Preserve the M01–M30 dependency order and 14/16 phase allocation unless a substantive scientific change justifies revision. Do not add personal tests, answers, coaching instructions or progress records.
 
-Preserve the distinction between globally unknown temperature and a locally tuned probe, static full Gibbs samples and dynamical bath access, sample count and wall-clock/thermalization cost, and arbitrary many-body access and hardware-local couplings. Do not treat finite numerical checks or assistant agreement as independent proof certification.
+Run `python verification/checks.py` and `python verification/learning_checks.py` after relevant changes. Check affected source links, notation and attribution. These commands do not establish hosted rendering: inspect mathematical content and layout separately before claiming visual readiness. A passed finite test is not a proof or an independent expert review.
 
-For code, first run [verification/checks.py](verification/checks.py); keep the pinned expected output, relevant proof statements, and documentation consistent. When a mathematical result changes, update affected routes and literature comparisons together.
-
-General learning materials may later be attached under learning/, once the author chooses one educational anchor. Keep personalized coaching instructions, assessments, answers and user progress **outside this public research repository**. Do not add manuscript-targeting or private venue judgments to the reader-facing account.
+Keep the connected account under science/, the primary comparison under references/, and useful learning routes under learning/. Preserve license and privacy. Do not publish private workflow records, venue judgments or personal continuity archives in this scientific repository.
