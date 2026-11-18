@@ -190,13 +190,13 @@ Every source mention of the anchor refers to **De Pasquale and Stace, Quantum Th
 
 **Source pointers:** Anchor sequential-measurement discussion, pp. 11–14, Eqs. (30)–(35); [access contract](../science/model.md#gibbs-preparation-contract).
 
-### M14 — The complete two-batch experiment
+### M14 — The complete feedback experiment
 
 **Phase:** Background/preliminaries.
 
-**Central question:** What is fixed before and after the single feedback boundary?
+**Central question:** What is fixed within a batch, and what may change at a feedback boundary?
 
-**Understanding target:** State the common interval, allowed controls, output loss, two-batch timing and all-branch budget as one operational task.
+**Understanding target:** State the common interval, allowed controls, output loss, batch timing and all-branch budget as one operational task; count r batches as at most r - 1 retunings and recover the two-batch example.
 
 **Dependencies:** M05, M08, M11, M12, M13.
 
@@ -352,55 +352,55 @@ Every source mention of the anchor refers to **De Pasquale and Stace, Quantum Th
 
 **Central question:** How does the final estimator avoid infinities and remain valid at saturated counts?
 
-**Understanding target:** Explain smoothing, projection, inverse-map stability and the uniform binomial-logit risk lemma.
+**Understanding target:** Explain smoothing, projection, inverse-map stability and the uniform binomial-logit risk lemma for the two-batch procedure; understand why the entire pilot tail must also be charged before claiming its expected-risk bound.
 
 **Dependencies:** M04, M05, M24.
 
 **Conceptual connection and story role:** Converts designed sensitivity into a defined estimator on every data record.
 
-**Source pointers:** [Estimator](../science/achievability.md#explicit-estimator-including-endpoints); [uniform lemma](../science/achievability.md#uniform-binomial-logit-lemma).
+**Source pointers:** [Estimator](../science/achievability.md#explicit-estimator-including-endpoints); [uniform lemma](../science/achievability.md#uniform-binomial-logit-lemma); [full pilot distribution](../science/achievability.md#charge-the-entire-pilot-error-distribution).
 
-### M26 — Rare calibration failures
+### M26 — A weighted array of response centers
 
 **Phase:** Narrative/innovation.
 
-**Central question:** Why is a high-probability calibration statement insufficient by itself?
+**Central question:** How can the next batch hedge against an inaccurate earlier estimate without spending more qubits on that history?
 
-**Understanding target:** Identify exponential error amplification and show why the pilot tail controls its expectation without postselection or a logarithmic loss.
+**Understanding target:** Choose a block size from a predetermined incoming width w, place log-temperature centers X + jw, allocate multiplicities proportional to (1 + |j|) to the power minus two, and verify that all blocks fit the same pathwise batch budget. Define the next estimate by a clipped inverse of the total mean count.
 
 **Dependencies:** M23, M24, M25.
 
-**Conceptual connection and story role:** Completes the uniform upper bound rather than relying only on typical records.
+**Conceptual connection and story role:** Replaces repeated reliance on one narrowly centered response by an explicit hedge whose distant centers retain a paid, polynomial share of the batch.
 
-**Source pointers:** [Full-distribution proof](../science/achievability.md#charge-the-entire-pilot-error-distribution).
+**Source pointers:** [Fixed-round construction](../science/fixed_round_achievability.md); [array explanation and budget example](TUTORIAL.md#a-wider-safety-net-for-the-next-batch).
 
-### M27 — The matching minimax law
-
-**Phase:** Narrative/innovation.
-
-**Central question:** Why do the upper and lower arguments establish one sharp exponent?
-
-**Understanding target:** Match interval, loss, quantum access, feedback count and total budget on both sides before concluding Theta(N to the power minus 3/2).
-
-**Dependencies:** M22, M26.
-
-**Conceptual connection and story role:** Integrates the main contribution and separates rate optimality from an optimal leading constant.
-
-**Source pointers:** [Scientific synthesis](../science/README.md#principal-statements); [interpretation](../science/interpretation.md#one-feedback-action-is-an-information-resource).
-
-### M28 — Fixed-round recurrence
+### M27 — Refinement on every calibration history
 
 **Phase:** Narrative/innovation.
 
-**Central question:** What can be concluded for a larger but fixed number of batches?
+**Central question:** Why do rare earlier errors not destroy the next batch's mean-square gain?
 
-**Understanding target:** Iterate the posterior-information recurrence and label the exponent 2 - 2 to the power (1 - r) as a lower-bound result unless attainment is separately proved.
+**Understanding target:** Relate the nearest response center to a conditional count tail, explain why its loss grows only polynomially with normalized incoming error, and use a higher fixed moment to pay for rare histories. Obtain the new width w divided by the square root of Bw while preserving every fixed error moment.
 
-**Dependencies:** M18, M19, M20, M27.
+**Dependencies:** M23, M25, M26.
 
-**Conceptual connection and story role:** Extends the obstruction without silently extending the constructive theorem.
+**Conceptual connection and story role:** Supplies the reusable attaining step; it includes all-zero counts, parameter endpoints and unusually poor preceding estimates without postselection.
 
-**Source pointers:** [Fixed-r proof](../science/round_complexity.md#fixed-r-global-risk-lower-bounds).
+**Source pointers:** [Refinement proof](../science/fixed_round_achievability.md); [all-history explanation](TUTORIAL.md#paying-for-rare-histories).
+
+### M28 — The matching fixed-round hierarchy
+
+**Phase:** Narrative/innovation.
+
+**Central question:** How do the information obstruction and the attaining refinement meet at every fixed batch count?
+
+**Understanding target:** Combine the posterior-information recurrence with $`\alpha_1=1/2`$ and $`\alpha_{j+1}=(1+\alpha_j)/2`$ for the estimator width. Match the interval, loss, access and pathwise budget before concluding $`R_r^*(N)=\Theta_r(N^{-(2-2^{1-r})})`$ for every fixed r; distinguish exponent optimality from an optimal constant.
+
+**Dependencies:** M18, M19, M20, M22, M27.
+
+**Conceptual connection and story role:** Integrates both sides of the main result, including the attained N to the power minus 7/4 three-batch case.
+
+**Source pointers:** [Fixed-r converse](../science/round_complexity.md#fixed-r-global-risk-lower-bounds); [fixed-r attainment](../science/fixed_round_achievability.md); [hierarchy table](TUTORIAL.md#the-sharp-fixed-round-hierarchy).
 
 ### M29 — Growing feedback depth
 
@@ -408,13 +408,13 @@ Every source mention of the anchor refers to **De Pasquale and Stace, Quantum Th
 
 **Central question:** Why cannot a fixed-r constant be reused when r grows with N?
 
-**Understanding target:** Explain the separate pointwise heat-capacity ceiling, pathwise squared-size sum and round-uniform information bound behind the necessary log-log round count.
+**Understanding target:** Explain the separate pointwise heat-capacity ceiling, pathwise squared-size sum and round-uniform information bound behind the necessary log-log batch count. Identify why the attaining proof's r-dependent constants, higher moment orders and equal allocation B = floor(N/r) do not establish growing-r sufficiency.
 
 **Dependencies:** M12, M16, M28.
 
 **Conceptual connection and story role:** Distinguishes a necessary asymptotic control resource from a sufficient schedule.
 
-**Source pointers:** [Uniform depth argument](../science/round_complexity.md#a-bound-uniform-in-the-number-of-batches); [pointwise thermal bound](../science/entropy_budget.md#separate-pointwise-upper-bound).
+**Source pointers:** [Uniform depth argument](../science/round_complexity.md#a-bound-uniform-in-the-number-of-batches); [pointwise thermal bound](../science/entropy_budget.md#separate-pointwise-upper-bound); [fixed-versus-growing explanation](TUTORIAL.md#why-fixed-round-attainment-does-not-settle-growing-depth).
 
 ### M30 — The scientific contribution as a whole
 
@@ -422,7 +422,7 @@ Every source mention of the anchor refers to **De Pasquale and Stace, Quantum Th
 
 **Central question:** What changes in thermometric capability, and what still needs a different theorem?
 
-**Understanding target:** Connect inherited Bayesian and probe-design ingredients to the new finite-feedback law; distinguish checked examples, proved rates, ideal resources and unproved higher-round or hardware extensions.
+**Understanding target:** Connect inherited Bayesian and probe-design ingredients to the sharp fixed-round law and its robust weighted-array construction. Distinguish checked finite examples, proved asymptotic exponents, the necessary growing-depth bound and unresolved growing-r, thermalization-time or hardware claims.
 
 **Dependencies:** M13, M27, M28, M29.
 

@@ -18,7 +18,7 @@ This is the only educational anchor. Research citations in [Related work](../ref
 | Fundamental limitations on temperature estimation with individual quantum probes, p. 11, Eqs. (28)–(29) and following paragraph | Energy-spectrum design and degenerate probes | [Tuned blocks](../science/achievability.md#stage-2-retuned-degenerate-thermal-blocks) |
 | Single-qubit thermometry through sequential measurements, pp. 11–14, Eqs. (30)–(35) | Conditional likelihoods and the meaning of repeated access | Contrast dynamical reuse with fresh Gibbs replacement |
 
-The Heisenberg Limited Thermometry subsection on pp. 6–7 and the Global versus Local Measurements discussion on pp. 7–9 are useful **contrasts**, not extra assumptions imported into this project. The former uses a different dynamical interaction; the latter concerns access to spatial subsystems. Neither establishes the present two-batch minimax result.
+The Heisenberg Limited Thermometry subsection on pp. 6–7 and the Global versus Local Measurements discussion on pp. 7–9 are useful **contrasts**, not extra assumptions imported into this project. The former uses a different dynamical interaction; the latter concerns access to spatial subsystems. Neither establishes the present fixed-round minimax hierarchy.
 
 ## Notation and normalization
 
@@ -30,8 +30,10 @@ Use a fixed temperature unit and set Boltzmann's constant to one in the project 
 | Q(T), thermal quantum Fisher information | F_H(x), information for log temperature |
 | c_v, physical heat capacity | C_H = c_v / k_B, dimensionless heat capacity |
 | N, repeated probes in a fixed experiment | N, total thermalized-qubit budget across all batches |
-| M, Hilbert-space dimension in spectrum design | D = 2^k for one k-qubit block; M instead counts blocks here |
+| M, Hilbert-space dimension in spectrum design | D = 2^k for one k-qubit block; M instead counts blocks, or the available block capacity in an array |
 | Delta T, root mean-square error in local bounds | R, global mean-square log error; its square root is the corresponding root error |
+
+For feedback, r counts preparation batches, so there are at most r - 1 opportunities to retune between them. In the array proof, B is one batch's qubit allocation, w is the deterministic incoming accuracy scale, X is the preceding estimate, and c_j = X + jw is a center in **log temperature**. Its physical center temperature is exp(c_j). These are project conventions, not notation taken from the anchor.
 
 Changing the parameter changes Fisher information. Since dx/dT = 1/T, the score for x is T times the score for T. Therefore
 
@@ -53,7 +55,7 @@ Do not read the anchor's local root-error formula as a global minimax guarantee.
 
 **Feedback and the posterior.** After the first batch, the remaining uncertainty is a probability density conditioned on the observed record. Its maximum height is bounded by half the square root of its density Fisher information. This converts a thermal sensitivity-area budget into a bound on how much information the retuned second batch can acquire. The [tutorial](TUTORIAL.md#why-one-update-has-a-limit) develops the argument; the [proof](../science/two_batch_converse.md) supplies the quantifiers and endpoint conditions.
 
-**An estimator, not just sensitivity.** A high information peak alone does not exhibit an estimator with small worst-case error. The project supplies a globally identifiable pilot, a smoothed second-batch count estimator, clipping and an exponential-moment argument that includes rare pilot failures. Those steps, and the sharp two-batch law, are not claimed as content of the 2018 anchor.
+**An estimator, not just sensitivity.** A high information peak alone does not exhibit an estimator with small worst-case error. The two-batch construction supplies a globally identifiable pilot, a smoothed count estimator, clipping and an exponential-moment argument that includes rare pilot failures. To attain every larger fixed batch count, the [array construction](../science/fixed_round_achievability.md) spreads the next batch over several centers with polynomially decreasing multiplicities. It inverts the total expected count, includes saturated records by clipping, and propagates all fixed polynomial error moments. A higher incoming moment pays for rare earlier histories; none is discarded. The [tutorial](TUTORIAL.md#a-wider-safety-net-for-the-next-batch) connects this mechanism to the sharp fixed-round law. These estimators, the moment argument and the minimax hierarchy are supplied by the project, not the 2018 anchor.
 
 ## Distinctions to keep while reading
 
@@ -61,6 +63,8 @@ The anchor's spatially global measurements are not the same concept as this proj
 
 The anchor's extensive-energy example does not justify assuming extensive heat capacity for all allowed many-body probes. Here narrow peaks can be quadratic in block size; the universal constraint is their **integrated area**. Conversely, the attaining diagonal block protocol does not require entangled preparation merely because the underlying theory is quantum.
 
+The attained hierarchy fixes r before taking N to infinity. Its constants and the moment orders needed through the proof can grow with r. The separate necessary log-log batch count for quadratic global risk therefore remains a converse: neither the anchor nor the fixed-r construction supplies a matching schedule with r growing with N.
+
 ## Reading sequence
 
-Read the source locations in the table selectively, then follow [M01–M14](MILESTONES.md#background-and-preliminaries) to assemble the experiment. The [worked tutorial](TUTORIAL.md) supplies the bridge to [M15–M30](MILESTONES.md#narrative-and-innovation). Specialists can instead go directly from [the model](../science/model.md) to [the lower bound](../science/two_batch_converse.md) and [the construction](../science/achievability.md).
+Read the source locations in the table selectively, then follow [M01–M14](MILESTONES.md#background-and-preliminaries) to assemble the experiment. The [worked tutorial](TUTORIAL.md) supplies the bridge to [M15–M30](MILESTONES.md#narrative-and-innovation). Specialists can instead go directly from [the model](../science/model.md) to the [two-batch lower bound](../science/two_batch_converse.md), [two-batch construction](../science/achievability.md), [general converse](../science/round_complexity.md) and [fixed-round attaining array](../science/fixed_round_achievability.md).
