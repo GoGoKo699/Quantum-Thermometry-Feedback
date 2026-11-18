@@ -46,7 +46,7 @@ The hedged-array suite uses the stated floors and multiplicities directly. The s
 | Scientific assertion | Proof location | Finite check |
 |---|---|---|
 | $\int C_H(x)dx\le n\ln2$ | [Entropy-area identity](../science/entropy_budget.md) | Three spectra and Simpson integration |
-| $\|q\|_\infty\le\frac12\sqrt{I(q)}$ | [Posterior peak lemma](../science/two_batch_converse.md) | Fixed smooth prior |
+| $\Vertq\Vert_\infty\le\frac12\sqrt{I(q)}$ | [Posterior peak lemma](../science/two_batch_converse.md) | Fixed smooth prior |
 | Logit squared error $\le200/[Mp(1-p)]$ | [Uniform lemma](../science/achievability.md) | 54 binomial distributions |
 | $\Theta(N^{-3/2})$ minimax risk | [Converse](../science/two_batch_converse.md) and [attainment](../science/achievability.md) | Two-stage finite-grid implementation only |
 | Hedged refinement, including rare preceding histories | [Fixed-round attainment](../science/fixed_round_achievability.md) | Complete finite count laws, clipping, derivative/concentration checks and weighted outlier example |

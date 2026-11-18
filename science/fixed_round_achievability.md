@@ -107,7 +107,7 @@ The interval has positive length: $`X\in[a,b]`$, $`a<b`$ and $`J\ge1`$. The esti
 ```math
 \boxed{
 X'=G_X^{-1}\!\left(
-\operatorname{clip}_{[G_X(\ell_X),G_X(h_X)]}Z\right),
+\mathrm{clip}_{[G_X(\ell_X),G_X(h_X)]}Z\right),
 }
 ```
 

@@ -106,7 +106,7 @@ I(q)=\int_a^b\frac{q'(x)^2}{q(x)}\,dx.
 Because q starts at zero, rises to its maximum and returns to zero, its total variation is at least twice its maximum. Cauchy–Schwarz then gives
 
 ```math
-\|q\|_\infty\le\frac12\sqrt{I(q)}.
+\Vertq\Vert_\infty\le\frac12\sqrt{I(q)}.
 ```
 
 The mean posterior information after the first batch is O(N). The next Hamiltonian has sensitivity area O(N), and only posterior concentration can make that area useful. Combining the two facts bounds the second batch's averaged information by O(N) times O(square root of N). The global van Trees inequality turns this into a mean-square risk lower bound of order N to the power minus 3/2, for biased estimators as well.

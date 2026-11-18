@@ -28,7 +28,7 @@ J_j-J_{j-1}
 &=\mathbb E\left[\int\pi_{Y_{\lt j}}(x)
 F_{H_j(Y_{\lt j})}(x)dx\right]\\
 &\le N\ln2\,
-\mathbb E[\|\pi_{Y_{\lt j}}\|_\infty]\\
+\mathbb E[\Vert\pi_{Y_{\lt j}}\Vert_\infty]\\
 &\le\frac{N\ln2}{2}\sqrt{J_{j-1}}.
 \end{aligned}
 ```

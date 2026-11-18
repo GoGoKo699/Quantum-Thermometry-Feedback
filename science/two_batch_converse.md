@@ -27,7 +27,7 @@ Choose the normalized smooth density
 It vanishes at both endpoints, is positive in the interior and has
 
 ```math
-\|\pi\|_\infty=\frac{2}{b-a},\qquad
+\Vert\pi\Vert_\infty=\frac{2}{b-a},\qquad
 I(\pi):=\int_a^b\frac{\pi'(x)^2}{\pi(x)}\,dx
 =\frac{4\pi^2}{(b-a)^2}=:I_0.
 ```
@@ -42,7 +42,7 @@ Let $`q`$ be a differentiable probability density on $`[a,b]`$, with $`q(a)=q(b)
 I(q)=\int_a^b \frac{q'(x)^2}{q(x)}\,dx.
 ```
 
-If $`m=\|q\|_\infty`$, the curve must rise from zero to $`m`$ and return to zero. Therefore
+If $`m=\Vertq\Vert_\infty`$, the curve must rise from zero to $`m`$ and return to zero. Therefore
 
 ```math
 2m\le \int_a^b|q'(x)|\,dx
@@ -54,7 +54,7 @@ If $`m=\|q\|_\infty`$, the curve must rise from zero to $`m`$ and return to zero
 Thus
 
 ```math
-\boxed{\|q\|_\infty\le\tfrac12\sqrt{I(q)}.}
+\boxed{\Vertq\Vert_\infty\le\tfrac12\sqrt{I(q)}.}
 ```
 
 This is a global Sobolev/Cauchy bound on the posterior *density*, not a claim about local Gaussian approximations.
@@ -75,8 +75,8 @@ The cross term in the expected squared score is zero because the normalized like
 \begin{aligned}
 J_1:=\mathbb E_Y[I(\pi_Y)]
 &=I_0+\int_a^b\pi(x)F_{H_1}(x)\,dx\\
-&\le I_0+n_1\ln2\,\|\pi\|_\infty\\
-&\le I_0+N\ln2\,\|\pi\|_\infty
+&\le I_0+n_1\ln2\,\Vert\pi\Vert_\infty\\
+&\le I_0+N\ln2\,\Vert\pi\Vert_\infty
 =O(N).
 \end{aligned}
 ```
@@ -90,9 +90,9 @@ For each first record $`y`$, the selected next Hamiltonian $`H_y`$ is held fixed
 ```math
 \begin{aligned}
 \int_a^b\pi_y(x)F_{H_y}(x)\,dx
-&\le \|\pi_y\|_\infty
+&\le \Vert\pi_y\Vert_\infty
 \int_a^b F_{H_y}(x)\,dx\\
-&\le n_2(y)\ln2\,\|\pi_y\|_\infty\\
+&\le n_2(y)\ln2\,\Vert\pi_y\Vert_\infty\\
 &\le\tfrac12 N\ln2\,\sqrt{I(\pi_y)}.
 \end{aligned}
 ```
@@ -132,6 +132,6 @@ The integration by parts does not assume unbiasedness; the endpoint term vanishe
 =\Omega(N^{-3/2}),
 ```
 
-where $`A=\ln 2\,\|\pi\|_\infty`$. This proves the claimed converse. It cannot be evaded by selecting a taller but narrower heat-capacity peak after only one noisy calibration batch, because posterior concentration and sensitivity area must both be paid for.
+where $`A=\ln 2\,\Vert\pi\Vert_\infty`$. This proves the claimed converse. It cannot be evaded by selecting a taller but narrower heat-capacity peak after only one noisy calibration batch, because posterior concentration and sensitivity area must both be paid for.
 
 [Continue: matching construction](achievability.md).
