@@ -55,12 +55,12 @@ Suppose the previous batches have produced $`X\in[a,b]`$ and a deterministic des
 
 ```math
 \sup_{x\in[a,b]}\mathbb E_x\left|\frac{X-x}{w}\right|^q
-\le C_q<\infty.
+\le C_q\lt \infty.
 ```
 
 The constants are uniform over the problem-size sequence under consideration. The design width need not be a confidence radius for an individual record, and the proof does not condition away records outside that width.
 
-Let $`B`$ be the next batch's qubit allowance. For the nontrivial refinement take $`0<w\le1/2`$ and put
+Let $`B`$ be the next batch's qubit allowance. For the nontrivial refinement take $`0\lt w\le1/2`$ and put
 
 ```math
 k=\lceil1/w\rceil,\qquad
@@ -102,7 +102,7 @@ At least $`m_0\ge1`$ blocks are present, so $`G_X`$ is continuous and strictly i
 h_X=\min\{b,X+Jw\},\qquad I_X=[\ell_X,h_X].
 ```
 
-The interval has positive length: $`X\in[a,b]`$, $`a<b`$ and $`J\ge1`$. The estimator is
+The interval has positive length: $`X\in[a,b]`$, $`a\lt b`$ and $`J\ge1`$. The estimator is
 
 ```math
 \boxed{
@@ -119,7 +119,7 @@ For the integer array,
 
 ```math
 \sum_{j\in\mathbb Z}\frac{1}{(1+|j|)^2}
-=2\zeta(2)-1<4.
+=2\zeta(2)-1\lt 4.
 ```
 
 Consequently $`M'\le M`$ and $`kM'\le B`$, independently of $`X`$ and the actual outcomes. All low-probability histories use the same prescribed qubit allowance.
@@ -215,7 +215,7 @@ If $`x+u\notin I_X`$, the corresponding upward-deviation event is empty. The dow
 ```math
 \Pr_x(|X'-x|>u\mid X)
 \le 2\exp\!\left[-\frac{cM u^2}{w^2(1+|D|)^4}\right],
-\qquad 0<u\le w,
+\qquad 0\lt u\le w,
 ```
 
 where $`c=2a_*^2>0`$ may be decreased without changing the proof. Conditioning only on $`X`$ is sufficient because the design and all fresh block laws are functions of $`X`$ and deterministic parameters; conditioning on the full history gives the same bound.
@@ -301,7 +301,7 @@ w_j=B^{-\alpha_j},\qquad
 
 At each batch $`j+1`$, apply the array with allowance $`B`$, previous estimate $`X_j`$ and width $`w_j`$. If the finite design conditions $`w_j\le1/2`$ and $`\lfloor B/\lceil1/w_j\rceil\rfloor\ge M_0`$ are not met, use $`B`$ ordinary fixed-gap qubits in that batch, ignore their outcomes and retain $`X_j`$. This fallback makes every small-budget protocol well defined without discarding a history or exceeding $`rB\le N`$; it is not used in the large-$`N`$ proof.
 
-For each fixed stage, $`\alpha_j<1`$. As $`B\to\infty`$,
+For each fixed stage, $`\alpha_j\lt 1`$. As $`B\to\infty`$,
 
 ```math
 w_j\to0,\qquad
@@ -325,11 +325,11 @@ Solving the width recurrence gives
 \sup_x\mathbb E_x|X_r-x|^q\le C_{r,q}B^{-q(1-2^{-r})}.
 ```
 
-For $`q=2`$ and fixed $`r`$, $`B\asymp_r N`$, which proves the stated upper bound. The remaining finitely many integer budgets $`r\le N<N_r`$ have range-valued error at most $`(b-a)^2`$. Enlarging $`C_r`$ if desired extends the displayed upper inequality to all $`N\ge r`$. No asymptotic constant is claimed to be small.
+For $`q=2`$ and fixed $`r`$, $`B\asymp_r N`$, which proves the stated upper bound. The remaining finitely many integer budgets $`r\le N\lt N_r`$ have range-valued error at most $`(b-a)^2`$. Enlarging $`C_r`$ if desired extends the displayed upper inequality to all $`N\ge r`$. No asymptotic constant is claimed to be small.
 
 ## Resources and the fixed-round boundary
 
-In a refinement whose preceding width is $`w=B^{-\alpha}`$, with fixed $`1/2\le\alpha<1`$:
+In a refinement whose preceding width is $`w=B^{-\alpha}`$, with fixed $`1/2\le\alpha\lt 1`$:
 
 | Resource or parameter | Explicit order and charge |
 |---|---|
