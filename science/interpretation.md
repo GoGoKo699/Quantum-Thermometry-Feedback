@@ -18,10 +18,16 @@ The rigorous comparison is:
 |---|---|
 | One fixed nonadaptive batch | $\Theta(N^{-1})$ |
 | Two batches, one intervening Hamiltonian update | $\Theta(N^{-3/2})$ |
-| Fixed $r$ batches | $\Omega(N^{-[2-2^{1-r}]})$; matching general upper bound not supplied |
+| Every fixed $r$ batches | $\Theta_r(N^{-[2-2^{1-r}]})$ |
 | Desired $O(N^{-2})$ risk | Requires at least $\log_2\log N-O(1)$ batches |
 
 The previously known many-update adaptive strategies illustrate how retuning can approach local Heisenberg-like sensitivity. The contribution here is a **sharp finite-feedback law**, not the invention of feedback thermometry itself. Full comparison and attribution appear in [Related work](../references/RELATED_WORK.md).
+
+## Why further batches need a different construction
+
+Repeating the same perfectly centered block design would hide an important statistical problem. A slightly inaccurate estimate can put a narrow sensitivity peak far from the true temperature. The two-batch proof uses a sub-Gaussian pilot to pay for this through an exponential moment; a later mean-square guarantee alone does not supply that exponential control.
+
+The [fixed-round construction](fixed_round_achievability.md) spreads each new batch over nearby centers instead. It spends fewer blocks on more distant centers, with polynomial rather than exponential decay. A nearby center remains available on moderately inaccurate histories, and higher polynomial moments pay for the remaining rare histories. At uncertainty width w, the next squared-error scale is of order w/N for a fixed batch count. Starting at w of order N to the power minus1/2 gives the exponent sequence3/2,7/4,15/8. Every batch's full array is fixed before its outputs are read.
 
 ## What quantum mechanics does and does not contribute here
 
@@ -53,4 +59,4 @@ The [verification code](../verification/README.md) evaluates the risk by summing
 
 ## Open but nonessential extensions
 
-A matching upper-bound hierarchy for all fixed $r>2$, a proof of sufficiency at $O(\log\log N)$ rounds, finite-control-locality costs, and sensitivity to noninstantaneous thermalization would all be substantial separate tasks. None is needed to state or prove the two-batch law at its present scope.
+A proof of sufficiency at $O(\log\log N)$ rounds, finite-control-locality costs, and sensitivity to noninstantaneous thermalization remain open. The fixed-round construction has stage-dependent moment constants and cannot establish the growing-round claim by substitution.

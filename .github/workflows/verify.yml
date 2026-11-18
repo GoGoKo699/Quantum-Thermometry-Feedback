@@ -1,4 +1,4 @@
-name: Science, learning and hosted rendering
+name: Science, learning and hosted mathematics
 
 on:
   pull_request:
@@ -8,47 +8,65 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: thermometry-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   verify:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
     env:
       TARGET_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
     steps:
-      - name: Fetch the exact public source revision
+      - name: Check out the exact proposed source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ env.TARGET_SHA }}
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Install scientific and capture runtimes
         shell: bash
         run: |
           set -euo pipefail
-          [[ "$TARGET_SHA" =~ ^[0-9a-f]{40}$ ]]
-          git clone --no-checkout https://github.com/GoGoKo699/Quantum-Thermometry-Feedback.git source
-          git -C source fetch origin "$TARGET_SHA"
-          git -C source checkout --detach "$TARGET_SHA"
-          mkdir -p evidence
-          git -C source bundle create ../evidence/source.bundle HEAD
-          git -C source rev-parse HEAD HEAD^{tree} > evidence/revision.txt
-      - name: Install the pinned scientific and browser dependencies
+          python3 -m venv .venv
+          .venv/bin/pip install -r verification/requirements.txt
+          npm install --prefix "$RUNNER_TEMP/math-runtime" playwright@1.56.1 mathjax-full@3.2.1
+          node "$RUNNER_TEMP/math-runtime/node_modules/playwright/cli.js" install --with-deps chromium
+          mkdir -p "$RUNNER_TEMP/thermometry-evidence"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/thermometry-evidence/revision.txt"
+          .venv/bin/pip freeze > "$RUNNER_TEMP/thermometry-evidence/dependencies.txt"
+      - name: Probe representative hosted mathematics
         shell: bash
         run: |
-          python3 -m venv .venv
-          .venv/bin/pip install -r source/verification/requirements.txt playwright==1.64.1
-          .venv/bin/python -m playwright install --with-deps chromium
-          .venv/bin/python --version > evidence/python-version.txt
-          .venv/bin/pip freeze > evidence/dependencies.txt
+          export NODE_PATH="$RUNNER_TEMP/math-runtime/node_modules"
+          node verification/hosted_math/probe_hosted_math.cjs \
+            --root "$GITHUB_WORKSPACE" --repository "$GITHUB_REPOSITORY" \
+            --revision "$TARGET_SHA" --page science/model.md \
+            --output "$RUNNER_TEMP/thermometry-evidence/probe"
       - name: Run scientific reproduction and learning checks
         shell: bash
         run: |
           set -euo pipefail
-          .venv/bin/python source/verification/checks.py | tee evidence/science.txt
-          .venv/bin/python source/verification/learning_checks.py | tee evidence/learning.txt
-      - name: Capture real hosted mathematics and screenshots
+          .venv/bin/python verification/checks.py | tee "$RUNNER_TEMP/thermometry-evidence/science.txt"
+          .venv/bin/python verification/learning_checks.py | tee "$RUNNER_TEMP/thermometry-evidence/learning.txt"
+      - name: Compare every hosted expression at both widths
         shell: bash
         run: |
-          .venv/bin/python source/verification/capture_hosted.py --revision "$TARGET_SHA" --output evidence/hosted
-      - name: Preserve inspection evidence
+          export NODE_PATH="$RUNNER_TEMP/math-runtime/node_modules"
+          node verification/hosted_math/capture_hosted_math.cjs \
+            --root "$GITHUB_WORKSPACE" --repository "$GITHUB_REPOSITORY" \
+            --revision "$TARGET_SHA" \
+            --output "$RUNNER_TEMP/thermometry-evidence/hosted"
+      - name: Retain actual captures and reports
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: thermometry-verification-${{ github.run_id }}
-          path: evidence/
-          retention-days: 7
+          path: ${{ runner.temp }}/thermometry-evidence
+          retention-days: 14
           if-no-files-found: error
