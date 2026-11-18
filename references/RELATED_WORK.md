@@ -30,7 +30,7 @@ The present minimax theorem fixes its own squared logarithmic loss and complete 
 
 The array's concentration estimate uses the established bounded-independent-variable inequality of **W. Hoeffding**, *Probability Inequalities for Sums of Bounded Random Variables*, JASA **58**, 13–30 (1963), [DOI](https://doi.org/10.1080/01621459.1963.10500830). The new ingredient is its use with the hedged Gibbs response to propagate all fixed error moments, not a new concentration inequality.
 
-## Most recent relevant paper and access limitation
+## Recent physical-design comparator and access limitation
 
 **J. Fan and S. Pang**, *Simultaneously achieving Heisenberg- and Landau-limited precision in equilibrium quantum thermometry*, npj Quantum Information (published 23 October 2026), [DOI](https://doi.org/10.1038/s41534-026-01397-7).
 

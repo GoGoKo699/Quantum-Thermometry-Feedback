@@ -27,7 +27,7 @@ The previously known many-update adaptive strategies illustrate how retuning can
 
 Repeating the same perfectly centered block design would hide an important statistical problem. A slightly inaccurate estimate can put a narrow sensitivity peak far from the true temperature. The two-batch proof uses a sub-Gaussian pilot to pay for this through an exponential moment; a later mean-square guarantee alone does not supply that exponential control.
 
-The [fixed-round construction](fixed_round_achievability.md) spreads each new batch over nearby centers instead. It spends fewer blocks on more distant centers, with polynomial rather than exponential decay. A nearby center remains available on moderately inaccurate histories, and higher polynomial moments pay for the remaining rare histories. At uncertainty width w, the next squared-error scale is of order w/N for a fixed batch count. Starting at w of order N to the power minus1/2 gives the exponent sequence3/2,7/4,15/8. Every batch's full array is fixed before its outputs are read.
+The [fixed-round construction](fixed_round_achievability.md) spreads each new batch over nearby centers instead. It spends fewer blocks on more distant centers, with polynomial rather than exponential decay. A nearby center remains available on moderately inaccurate histories, and higher polynomial moments pay for the remaining rare histories. At uncertainty width w, the next squared-error scale is of order w/N for a fixed batch count. Starting at w of order N to the power minus1/2 gives the exponent sequence 3/2, 7/4, 15/8. Every batch's full array is fixed before its outputs are read.
 
 ## What quantum mechanics does and does not contribute here
 

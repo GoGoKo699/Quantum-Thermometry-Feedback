@@ -4,7 +4,7 @@ The read-only [verification workflow](../.github/workflows/verify.yml) checks th
 
 The [collector](hosted_math/capture_hosted_math.cjs) inventories source expressions and compiles expected MathML with MathJax. It then compares those symbols and structures with the actual GitHub-rendered MathML, including scripts, fractions, labels, host counts and display geometry. The [checker](hosted_math/check_rendered_math.py) and [probe](hosted_math/probe_hosted_math.cjs) use the same source-bound contract. These are generic verification helpers; they do not establish mathematical correctness.
 
-The artifact contains the source commit/tree, runtime versions, command outputs, page text/HTML, screenshots, individual page receipts and `hosted-report.json`. Artifacts expire after14days. A passing report still requires actual visual inspection of the principal claims, proof and learning route at both widths; it is not by itself a scientific or visual certificate.
+The artifact contains the source commit/tree, runtime versions, command outputs, page text/HTML, screenshots, individual page receipts and `hosted-report.json`. Artifacts expire after 14 days. A passing report still requires actual visual inspection of the principal claims, proof and learning route at both widths; it is not by itself a scientific or visual certificate.
 
 For a local checkout of the exact public commit, install `playwright@1.56.1` and `mathjax-full@3.2.1` in a temporary directory outside the source, and install Chromium with the Playwright CLI. Then set `NODE_PATH` to that temporary `node_modules` directory and run:
 
