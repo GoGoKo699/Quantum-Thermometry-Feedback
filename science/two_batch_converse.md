@@ -42,7 +42,7 @@ Let $`q`$ be a differentiable probability density on $`[a,b]`$, with $`q(a)=q(b)
 I(q)=\int_a^b \frac{q'(x)^2}{q(x)}\,dx.
 ```
 
-If $`m=\Vertq\Vert_\infty`$, the curve must rise from zero to $`m`$ and return to zero. Therefore
+If $`m=\Vert q\Vert_\infty`$, the curve must rise from zero to $`m`$ and return to zero. Therefore
 
 ```math
 2m\le \int_a^b|q'(x)|\,dx
@@ -54,7 +54,7 @@ If $`m=\Vertq\Vert_\infty`$, the curve must rise from zero to $`m`$ and return t
 Thus
 
 ```math
-\boxed{\Vertq\Vert_\infty\le\tfrac12\sqrt{I(q)}.}
+\boxed{\Vert q\Vert_\infty\le\tfrac12\sqrt{I(q)}.}
 ```
 
 This is a global Sobolev/Cauchy bound on the posterior *density*, not a claim about local Gaussian approximations.

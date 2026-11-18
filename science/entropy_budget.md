@@ -53,7 +53,7 @@ For a normalized nonnegative density $`q(x)`$ on $`[a,b]`$,
 
 ```math
 \int_a^b q(x)C_H(x)\,dx
-\le\Vertq\Vert_\infty\,n\ln2.
+\le\Vert q\Vert_\infty\,n\ln2.
 ```
 
 This is the useful posterior-weighted form: tuning can reposition the sensitivity peak, but only a sufficiently concentrated posterior allows its whole area to matter.
