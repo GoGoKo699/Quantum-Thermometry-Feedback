@@ -90,7 +90,7 @@ Start with $`I=[a,b]`$ and visit $`h=R,R-1,\ldots,1`$. At stage $`h`$ use the on
 w=\min(D,W_h/N),\qquad v=W_{h-1}/N,\qquad \eta=\eta_h.
 ```
 
-Minimality of $`R`$ gives $`v\le w`$ at the first stage, and monotonicity of the $`W_h`$ gives it thereafter. The preceding interval always has half-width at most $`w`$. The block size, repetition count and target widths are fixed in advance. For the degenerate blocks, the gap is recalibrated to the midpoint of the interval retained from previous batches. The final estimate $`\widehat x`$ is the midpoint of the final interval. If $`R=0`$, the original midpoint already satisfies $`|\widehat x-x|\le W_0/N`$.
+Choosing the smallest depth that covers the initial interval gives $`v\le w`$ at the first stage, and monotonicity of the $`W_h`$ gives it thereafter. The preceding interval always has half-width at most $`w`$. The block size, repetition count and target widths are fixed in advance. For the degenerate blocks, the gap is recalibrated to the midpoint of the interval retained from previous batches. The final estimate $`\widehat x`$ is the midpoint of the final interval. If the schedule uses no batches, the original midpoint already satisfies $`|\widehat x-x|\le W_0/N`$.
 
 The identity controlling the budget is
 
@@ -106,7 +106,13 @@ It cancels the doubly exponential part of the widths. Each stage costs at most $
 =\frac{16C_DN}{A}\left(2+\tfrac{20}{9}\ln2+\tfrac{\ln2-2}{3}\right).
 ```
 
-Choose $`A=\max\{1,16C_D(2+\tfrac{20}{9}\ln2+\tfrac{\ln2-2}{3})\}`$. This charges no more than $`N`$ qubits on every history. As $`N`$ grows, minimality means $`2^R+dR\ge\ln(ND/A)`$ and $`2^{R-1}+d(R-1)\lt\ln(ND/A)`$. Since $`R\le2^R`$, these inequalities give $`R=\log_2\ln N+O(1)`$.
+Choose $`A=\max\{1,16C_D(2+\tfrac{20}{9}\ln2+\tfrac{\ln2-2}{3})\}`$. This charges no more than $`N`$ qubits on every history. For a nonzero batch count, the stopping rule gives
+
+```math
+2^{R-1}+d(R-1)\lt\ln(ND/A)\le 2^R+dR.
+```
+
+The two outer expressions grow in proportion to two raised to the batch count. Taking the base-two logarithm gives the stated asymptotic depth.
 
 ## All records contribute to the risk
 

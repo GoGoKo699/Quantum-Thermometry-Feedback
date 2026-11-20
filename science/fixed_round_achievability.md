@@ -89,7 +89,7 @@ p_j(t)=\sigma\!\left(L(1-e^{c_j-t})\right),
 \qquad \sigma(z)=\frac{1}{1+e^{-z}}.
 ```
 
-Conditional on the preceding history, fresh Gibbs replacement makes all these outcomes independent. Let $`M'=\sum_{j=-J}^Jm_j`$ be the number of blocks and let $`Z`$ be the sum of their binary outcomes. Its known conditional mean is
+Conditional on the preceding history, fresh Gibbs replacement makes all these outcomes independent. Let $`M'=\sum_{j=-J}^Jm_j`$ be the number of blocks and denote their total count by `Z`. Its known conditional mean is
 
 ```math
 G_X(t)=\sum_{j=-J}^Jm_jp_j(t).

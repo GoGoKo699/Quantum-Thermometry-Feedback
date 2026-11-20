@@ -14,10 +14,10 @@ The lower bound below permits arbitrary within-batch Hamiltonians, measurements,
 
 ## Posterior-information recurrence
 
-Fix the same smooth zero-endpoint prior $`\pi`$ as in the two-batch theorem and define $`J_0=I(\pi)>0`$. After batch $`j`$, let $`\pi_{Y_{\le j}}`$ denote the posterior given the complete revealed energy-label history and write
+Use the same smooth prior with zero endpoints as in the two-batch theorem. After batch $`j`$, condition on the complete revealed energy-label history. Define the initial information and the expected posterior information as
 
 ```math
-J_j=\mathbb E[I(\pi_{Y_{\le j}})].
+J_0=I(\pi)>0,\qquad J_j=\mathbb E[I(\pi_{Y_{\le j}})].
 ```
 
 The posterior-score identity and the conditional entropy-area budget apply history by history. For batch $`j`$ containing at most $`n_j(y_{\lt j})\le N`$ charged qubits on each branch,
