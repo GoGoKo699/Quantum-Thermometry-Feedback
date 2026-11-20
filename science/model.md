@@ -4,7 +4,7 @@
 
 ## Parameter and loss
 
-The unknown reservoir temperature $`T`$ is known only to lie in a fixed, positive, nondegenerate interval $`[T_-,T_+]`$. Write
+The unknown reservoir temperature lies in a fixed, positive, nondegenerate interval $`[T_-,T_+]`$. Write
 
 ```math
 x=\ln T,\qquad a=\ln T_-,\qquad b=\ln T_+,\qquad 0\lt b-a\lt \infty.
@@ -21,7 +21,7 @@ R_r^*(N;[a,b])=
 
 The infimum ranges over all admissible $`r`$-batch policies and estimators with no more than $`N`$ thermalized qubit uses on every branch. Truncating $`\widehat x`$ to $`[a,b]`$ does not increase the error, so the estimator may be assumed range-valued. There is no local-unbiasedness requirement.
 
-For fixed $`T_\pm`$, an equivalent ordinary squared relative-temperature risk has the same asymptotic exponents, since $`\exp`$ and $`\ln`$ are bi-Lipschitz on the compact interval. We use the logarithmic loss because thermal likelihoods have a natural Fisher metric in $`x`$ and because it does not privilege a temperature scale.
+For fixed temperature endpoints, an equivalent ordinary squared relative-temperature risk has the same asymptotic exponents, since $`\exp`$ and $`\ln`$ are bi-Lipschitz on the compact interval. We use the logarithmic loss because thermal likelihoods have a natural Fisher metric in $`x`$ and because it does not privilege a temperature scale.
 
 ## Gibbs-preparation contract
 
@@ -61,6 +61,6 @@ This reduction is valid for any state that is a full, known-basis Gibbs replacem
 - For two rounds, $`H_1`$ is fixed before observations; $`H_2(Y)`$ may depend on the complete first classical record $`Y`$. The second batch has no subsequent retuning.
 - The lower bound allows arbitrary within-batch many-body Hamiltonians, quantum processing, biased estimators, and first-to-second quantum memory under the Gibbs-replacement contract. It need not assume the product form used by the construction.
 - The fixed-round upper bounds use ordinary calibration qubits and degenerate many-body blocks. The [growing-round upper bound](growing_round_achievability.md) also allows commuting star blocks with bounded pair strengths, growing hub degree and a single central measurement. Neither resource count includes equilibration time.
-- Numerical constants may depend on $`T_\pm`$ and on fixed selected gaps, but not on $`N`$. The asymptotic statements concern $`N\to\infty`$ at fixed prior interval.
+- Numerical constants may depend on the temperature endpoints and on fixed selected gaps, but not on $`N`$. The asymptotic statements concern $`N\to\infty`$ at fixed prior interval.
 
 For attribution and alternate temperature losses, see [Related work](../references/RELATED_WORK.md).

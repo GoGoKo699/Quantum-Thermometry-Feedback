@@ -90,7 +90,7 @@ Start with $`I=[a,b]`$ and visit $`h=R,R-1,\ldots,1`$. At stage $`h`$ use the on
 w=\min(D,W_h/N),\qquad v=W_{h-1}/N,\qquad \eta=\eta_h.
 ```
 
-Minimality of $`R`$ gives $`v\le w`$ at the first stage, and monotonicity of the $`W_h`$ gives it thereafter. The preceding interval always has half-width at most $`w`$. The block size, repetition count and target widths are fixed in advance. For the degenerate blocks, the gap is recalibrated to the midpoint of the interval retained from previous batches. The final estimate $`\widehat x`$ is the midpoint of the final interval. If $`R=0`$, the original midpoint already satisfies $`|\widehat x-x|\le W_0/N`$.
+Choosing the smallest depth that covers the initial interval gives $`v\le w`$ at the first stage, and monotonicity of the $`W_h`$ gives it thereafter. The preceding interval always has half-width at most $`w`$. The block size, repetition count and target widths are fixed in advance. For the degenerate blocks, the gap is recalibrated to the midpoint of the interval retained from previous batches. The final estimate $`\widehat x`$ is the midpoint of the final interval. If $`R=0`$, the original midpoint already satisfies $`|\widehat x-x|\le W_0/N`$.
 
 The identity controlling the budget is
 
