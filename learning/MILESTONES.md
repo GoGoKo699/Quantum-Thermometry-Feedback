@@ -2,7 +2,7 @@
 
 [Learning route](README.md) · [Single anchor](ANCHOR.md) · [Worked tutorial](TUTORIAL.md) · [Scientific account](../science/README.md)
 
-The map contains exactly **30 project-defined understanding targets**. M01–M14 are background/preliminaries; M15–M30 are narrative/innovation. Fourteen foundations are needed to align thermodynamics, global statistics and the access model before sixteen targets assemble the converse, construction and consequences. Each phase progresses from individual objects to an integrated scientific account. This is a shared conceptual route, not a record of assessments or a catalogue of every technical lemma.
+The map contains **30 understanding targets**. M01–M14 assemble the thermodynamics, global statistics and access model. M15–M30 develop the converse, the fixed-round hierarchy, the quadratic-risk feedback threshold and its star-probe realization.
 
 Every source mention of the anchor refers to **De Pasquale and Stace, Quantum Thermometry, arXiv:1807.05762v1 (2018)**; see the [source bridge](ANCHOR.md) for page and notation conventions. The primary research dependencies remain in [Related work](../references/RELATED_WORK.md).
 
@@ -406,26 +406,26 @@ Every source mention of the anchor refers to **De Pasquale and Stace, Quantum Th
 
 **Phase:** Narrative/innovation.
 
-**Central question:** Why cannot a fixed-r constant be reused when r grows with N?
+**Central question:** How many batches are necessary and sufficient for quadratic global risk?
 
-**Understanding target:** Explain the separate pointwise heat-capacity ceiling, pathwise squared-size sum and round-uniform information bound behind the necessary log-log batch count. Identify why the attaining proof's r-dependent constants, higher moment orders and equal allocation B = floor(N/r) do not establish growing-r sufficiency.
+**Understanding target:** Use the pointwise heat-capacity ceiling and the all-branch qubit budget to obtain a bound uniform in the batch count. Explain how the attaining schedule chooses interval widths backward from order 1/N. Charge each first miss using the last interval that contained the true parameter to see why the summed risk is of order $`N^{-2}`$.
 
 **Dependencies:** M12, M16, M28.
 
-**Conceptual connection and story role:** Distinguishes a necessary asymptotic control resource from a sufficient schedule.
+**Conceptual connection and story role:** Matches the necessary batch count with an explicit schedule up to an additive constant.
 
-**Source pointers:** [Uniform depth argument](../science/round_complexity.md#a-bound-uniform-in-the-number-of-batches); [pointwise thermal bound](../science/entropy_budget.md#separate-pointwise-upper-bound); [fixed-versus-growing explanation](TUTORIAL.md#why-fixed-round-attainment-does-not-settle-growing-depth).
+**Source pointers:** [Uniform depth argument](../science/round_complexity.md#a-bound-uniform-in-the-number-of-batches), [pointwise thermal bound](../science/entropy_budget.md#separate-pointwise-upper-bound) and [nested-interval proof](../science/growing_round_achievability.md).
 
 ### M30 — The scientific contribution as a whole
 
 **Phase:** Narrative/innovation.
 
-**Central question:** What changes in thermometric capability, and what still needs a different theorem?
+**Central question:** Which precision guarantees follow from the feedback model, and which physical resources does the star probe require?
 
-**Understanding target:** Connect inherited Bayesian and probe-design ingredients to the sharp fixed-round law and its robust weighted-array construction. Distinguish checked finite examples, proved asymptotic exponents, the necessary growing-depth bound and unresolved growing-r, thermalization-time or hardware claims.
+**Understanding target:** State the fixed-round risk exponents and the matching batch threshold for quadratic risk in the same Gibbs model. Explain how the star's leaves sharpen the center-spin response and count every spin, then identify the growing degree and field and the assumption of full equilibration.
 
-**Dependencies:** M13, M27, M28, M29.
+**Dependencies:** M13, M24, M27, M28, M29.
 
-**Conceptual connection and story role:** Closes the narrative with the mechanism, evidence, novelty and boundaries in one account.
+**Conceptual connection and story role:** Connects the statistical guarantees to a concrete interaction and readout design.
 
-**Source pointers:** [Interpretation](../science/interpretation.md); [Related work](../references/RELATED_WORK.md); [verification](../verification/README.md); [anchor boundary](ANCHOR.md#three-bridges-supplied-here).
+**Source pointers:** [Star-probe explanation](TUTORIAL.md#reading-a-single-spin-in-a-star-probe), [physical interpretation](../science/interpretation.md), [related work](../references/RELATED_WORK.md) and [verification](../verification/README.md).

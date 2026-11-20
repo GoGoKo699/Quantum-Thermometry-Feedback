@@ -1,6 +1,6 @@
 # Reproducible numerical checks
 
-The results are analytical. This directory checks the two-batch estimator and the hedged fixed-round refinement, using their finite observation distributions, selected Gibbs identities and finite concentration checks. None of these tests certifies an asymptotic theorem, the universality of the converse, or a priority claim. All numerical probability calculations use floating point.
+The results are analytical. This directory checks the two-batch estimator, hedged fixed-round refinement, and growing-round nested intervals and probe response. The finite probability calculations use floating point.
 
 ## Environment and command
 
@@ -11,7 +11,7 @@ python -m pip install -r verification/requirements.txt
 python verification/checks.py
 ~~~
 
-This command runs both the historical two-batch checks and the new fixed-round suite. The hedged-array checks can also run alone:
+This command runs the historical two-batch, hedged-array and growing-round suites. The hedged-array checks can also run alone:
 
 ~~~bash
 python verification/fixed_round_checks.py
@@ -34,6 +34,7 @@ It prints machine-readable JSON. The checked historical output is stored as [exp
 5. The actual hedged-array implementation in [fixed_round_checks.py](fixed_round_checks.py): 37 checks compare stable reduced Gibbs probabilities with explicitly enumerated small spectra or a large-degeneracy saturation case; 96 layouts check integer floors, pathwise qubit use, clipped zero/full counts and selected nearest-group derivatives.
 6. The complete grouped Poisson-binomial count distribution for 162 conditional arrays at $M=64,128,256$, widths $w=0.02,0.05$, three true temperatures and nine preceding-center offsets, plus one full $M=2^{16}$ array in the lemma's stated regime (31,574 actual blocks). The code inverts the complete monotone mean for every possible count, including saturation, physical endpoints and preceding centers outside the hedge radius. It checks 394 applicable one-sided concentration events. Six smaller examples compare grouped convolution against enumeration of every binary record.
 7. A fully enumerated nine-point preceding-center distribution includes rare centers beyond the good-event cutoff and beyond the array. The checks include their actual contribution to normalized second and fourth moments, the deterministic output cap, and the higher-moment bound used for the bad histories. Seven design cases check the exact $M_0=2^{16}$ and $w\le1/2$ fallback thresholds. Twelve exact rational recurrence checks keep the fixed-round exponent and deterministic allocation conventions consistent.
+8. The [growing-round suite](growing_round_checks.py) checks 56 rounded qubit schedules, 60 direct Gibbs enumerations for the star readout, 672 interval response slopes and 4,410 terminal histories in 14 fully enumerated toy count trees. The count trees exercise nested clipping and first-exclusion loss accounting.
 
 The finite-grid script omits first-stage binomial terms with floating-point mass at most $10^{-18}$ for efficiency; its output includes an **upper bound on the discarded contribution to the squared loss**, using the fact that the estimator is clipped to the physical interval. This bound is below $10^{-12}$ in all committed cases. Smoothing handles zero and full second-stage counts rather than discarding them.
 
@@ -51,6 +52,6 @@ The hedged-array suite uses the stated floors and multiplicities directly. The s
 | $\Theta(N^{-3/2})$ minimax risk | [Converse](../science/two_batch_converse.md) and [attainment](../science/achievability.md) | Two-stage finite-grid implementation only |
 | Hedged refinement, including rare preceding histories | [Fixed-round attainment](../science/fixed_round_achievability.md) | Complete finite count laws, clipping, derivative/concentration checks and weighted outlier example |
 | Matching fixed-round exponent | [Round complexity](../science/round_complexity.md) and [attainment](../science/fixed_round_achievability.md) | Estimator implementation and exact rational recurrence only; no numerical asymptotic certification |
-| Necessary feedback depth for quadratic risk | [Round complexity](../science/round_complexity.md) | Analytical converse; the finite checks establish no growing-round attainment |
+| Sharp depth for quadratic risk | [Uniform converse](../science/round_complexity.md) and [growing-round schedule](../science/growing_round_achievability.md) | Rounded budgets, Gibbs response and fully enumerated toy first-exit risks |
 
-The code does not simulate a thermalization dynamical channel or a local Hamiltonian implementation, certify a continuum worst-case constant, or bound constants uniformly in a growing number of rounds. The complete-access model is specified in [the science](../science/model.md).
+The proofs establish the continuum risk, including the growing-round bound. The numerical schedule and toy count trees check separate parts of the proof. They provide no estimate of a finite-budget optimal constant or equilibration time.

@@ -10,7 +10,13 @@ The relevant primary text supplies the Bayesian/van-Trees formulation (Eq. (4), 
 
 Here the feedback count is an explicit resource. The [existing posterior-information converse](../science/round_complexity.md) gives exponent $`2-2^{1-r}`$ for every fixed number $`r`$ of batches. The original [two-batch construction](../science/achievability.md) attains the $`r=2`$ case. The added [hedged-array construction](../science/fixed_round_achievability.md) closes the upper-bound gap for every fixed $`r`$: it spreads each refinement batch across a finite array of differently centered copies of the inherited degenerate probe, then inverts their aggregate response. Polynomially decaying multiplicities make the refinement robust to imperfect previous estimates. An all-fixed-moments bound charges unfavorable histories and can be iterated a fixed number of times. This replaces the unsupported iteration of a single-center exponential-moment argument.
 
-The resulting $`R_r^*(N)=\Theta_r(N^{-(2-2^{1-r})})`$ is a statement about **global risk at fixed feedback depth**. The prior probe design, adaptive principle, entropy-area ingredient, fixed-$`r`$ converse, and two-batch result are not new in this extension. Neither the present fixed-$`r`$ constants nor earlier many-update examples establish an $`O(\log\log N)`$-batch, $`O(N^{-2})`$ schedule with a uniform constant.
+The resulting $`R_r^*(N)=\Theta_r(N^{-(2-2^{1-r})})`$ concerns global risk at fixed feedback depth. The [growing-round result](../science/growing_round_achievability.md) uses a separate allocation and estimator. It derives a uniform worst-case $`O(N^{-2})`$ error guarantee at the minimum asymptotic depth $`\log_2\ln N+O(1)`$ under the same pathwise cap.
+
+## Narrowing the search interval and implementing the probe
+
+**W.-K. Mok, K. Bharti, L.-C. Kwek and A. Bayat**, *Optimal probes for global quantum thermometry*, Communications Physics **4**, 62 (2021), [DOI](https://doi.org/10.1038/s42005-021-00572-w), discuss tuning secondary probes to narrower temperature intervals. The present schedule quantifies the cost of doing so at the optimal batch depth. Nesting limits the final loss after the first inaccurate refinement, and the backward choice of widths makes both the qubit budget and the first-exclusion contributions summable.
+
+**P. Abiuso, P. A. Erdman, M. Ronen, F. Noé, G. Haack and M. Perarnau-Llobet**, *Optimal thermometers with spin networks*, Quantum Science and Technology **9**, 035008 (2024), [DOI](https://doi.org/10.1088/2058-9565/ad37d3), give the two-body star, its sector partition sums and central-spin measurement in Eq. (13), Appendix D.1 and Secs. 3.3–3.4. They also establish quadratic local scaling at bounded pair strengths with a growing central field. We use that same family, with the field tuned to balance the central bit exactly at the current interval midpoint. The new guarantees are a uniform response slope across the interval and the same sharp global feedback depth when each block is measured at its hub.
 
 ## Global-loss and Bayesian foundations
 
@@ -48,8 +54,9 @@ The publisher abstract describes a linearly coupled central-probe/ancilla design
 | General fixed-$`r`$ converse and $`\Omega(\log\log N)`$ necessary depth for quadratic risk | Previously established here; retained |
 | Finite hedged Gibbs array, inverse-response estimator and all-fixed-moment refinement | Added constructive mechanism |
 | Tight $`R_r^*(N)=\Theta_r(N^{-(2-2^{1-r})})`$ for every fixed integer $`r\ge1`$ | Added matching hierarchy; constants may depend on $`r`$ |
-| $`O(\log\log N)`$-batch sufficiency for $`O(N^{-2})`$ global risk | Not established by the fixed-$`r`$ construction |
-| Local-interaction implementation or thermalization-time efficiency | Not established |
+| Matching $`\log_2\ln N+O(1)`$ batch depth for global $`O(N^{-2})`$ risk | Growing-round construction with a uniform risk constant |
+| Attainment with a two-body star and a single-spin readout | Inherited star model and readout, with a uniform interval slope and paid global schedule proved here |
+| Bounded-degree implementation, equilibration time and optimal leading constants | Open in this account |
 
 ## Related public research models
 
@@ -63,4 +70,4 @@ The following source comparisons concern scientific assumptions and resources. S
 
 ## Checks and remaining uncertainty
 
-The Mehboudi article's relevant main-text bounds, adaptive model and numerical limiting regime were rechecked against arXiv:2108.05932v2. The November 2026 $`k`$-local preprint was inspected through its thermometry model, local-QFI objective and spectral construction statements; no claim of a complete reconstruction of all numerical optimizations is made. Several peripheral papers retain primary-abstract-level comparison only. The Fan–Pang full-text gap remains explicit. The fixed-$`r`$ proof needs its own mathematical review; code tests and agreement between source accounts are not publication or priority certification. Hamiltonian locality, equilibration time and constants uniform in a growing number of batches remain separate research questions.
+The model comparison uses Mehboudi et al.'s main-text bounds and adaptive examples, Abiuso et al.'s star sections and appendix, Mok et al.'s adaptive range-narrowing discussion, and the November 2026 $`k`$-local preprint's thermometry model and local-QFI objective. The Fan–Pang comparison remains at abstract level. These comparisons and the numerical checks support a scoped research account. Bounded-degree implementations, equilibration time and optimal leading constants remain separate questions.

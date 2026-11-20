@@ -1,8 +1,8 @@
-# Sharp fixed-round precision and the boundary of quadratic global risk
+# Fixed-round precision and the converse for quadratic global risk
 
 [Science index](README.md) · [Posterior converse](two_batch_converse.md) · [Thermal information](entropy_budget.md) · [Fixed-round attainment](fixed_round_achievability.md)
 
-The posterior-information converse applies to any prescribed number of Gibbs-preparation batches. The [hedged-array construction](fixed_round_achievability.md) now matches its exponent for every **fixed** number of batches. A separate bound uniform in the number of batches proves necessary log-log feedback depth for quadratic global risk; no matching growing-round schedule is established.
+The posterior-information converse applies to any prescribed number of Gibbs-preparation batches. The [hedged-array construction](fixed_round_achievability.md) matches its exponent for every **fixed** number of batches. A bound uniform in the number of batches also gives the lower half of the [sharp growing-round depth theorem](growing_round_achievability.md).
 
 For $`r\ge1`$ fixed independently of $`N`$, the complete law is
 
@@ -103,10 +103,10 @@ Suppose a family of $`r(N)`$-batch protocols attains $`\sup_x\mathbb E_x(\wideha
 \boxed{r(N)\ge\log_2\ln N-O(1).}
 ```
 
-Changing from natural to base-two logarithms alters only the additive constant. This is a **necessary** number of feedback rounds, not an attainable schedule or a hardware-time lower bound.
+Changing the inner logarithm base alters only the additive constant. The [growing-round construction](growing_round_achievability.md) matches this lower bound up to an additive constant. The argument counts preparation batches, with one intervening update between consecutive batches.
 
-## What attainment adds, and what stays open
+## Two routes to attainment
 
 A naive iteration of the two-batch, identically centered construction would require control of exponentially amplified bad-calibration events. A mean-square or merely high-probability bound on the preceding estimate does not provide those exponential moments. The [hedged array](fixed_round_achievability.md#refinement-lemma) repairs this inference by spreading block centers with polynomially decreasing multiplicities and retaining all fixed polynomial moments throughout the induction. At deterministic uncertainty width $`w`$ and next-batch allowance $`B`$, it reaches width $`\Theta(\sqrt{w/B})`$ while explicitly including rare histories. The recurrence $`\alpha_{j+1}=(1+\alpha_j)/2`$ for root-error exponents then matches the information converse.
 
-This establishes the complete **fixed-$`r`$** hierarchy. It does **not** establish an $`O(\log\log N)`$-batch quadratic-risk construction: the moment orders, constants, per-batch allocation and array-size conditions have not been made uniform in growing $`r`$. Necessary depth and sufficient depth remain distinct. Optimal leading constants, local-Hamiltonian realization and thermalization-time efficiency are also not supplied by either the converse or the attaining arrays.
+This establishes the complete **fixed-$`r`$** hierarchy with $`r`$-dependent constants. The [separate growing-round schedule](growing_round_achievability.md) chooses interval widths backward from the target precision and bounds the expected loss caused by the first missed interval. Its summable error and qubit costs match the converse when the number of batches grows. Optimal leading constants and thermalization-time efficiency remain open.
