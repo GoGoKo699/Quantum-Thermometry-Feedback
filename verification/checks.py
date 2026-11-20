@@ -16,6 +16,7 @@ from scipy.special import expit, logsumexp
 from scipy.stats import binom
 
 from fixed_round_checks import run_checks as run_fixed_round_checks
+from growing_round_checks import run_checks as run_growing_round_checks
 
 BASE = Path(__file__).resolve().parent
 
@@ -103,4 +104,5 @@ if __name__ == "__main__":
     test_binomial_logit_bound()
     test_exact_binomial_risk_grid()
     run_fixed_round_checks()
+    run_growing_round_checks()
     print("All finite checks passed. These are not asymptotic proofs.")

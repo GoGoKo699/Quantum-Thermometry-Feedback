@@ -1,7 +1,7 @@
 # Quantum Thermometry Feedback — reading routes
 
-Question: global minimax squared log-temperature error with a fixed number r of fresh-Gibbs preparation batches, r-1 classical Hamiltonian updates and a pathwise N-qubit budget.
-Main theorem: R_r^*(N)=Theta_r(N^{-(2-2^{1-r})}) for every fixed r. The two-batch exponent is3/2; growing-r/log-log-depth sufficiency remains open.
+Question: global minimax squared log-temperature error with fresh Gibbs preparations, Hamiltonian updates between batches and a pathwise N-qubit budget.
+Main theorems: R_r^*(N)=Theta_r(N^{-(2-2^{1-r})}) for every fixed r. Quadratic risk requires and is attained in log2(ln N)+O(1) preparation batches.
 
 OVERVIEW: README.md — question, result, resources and navigation.
 STUDY: learning/README.md — shared learning route.
@@ -12,8 +12,9 @@ MODEL: science/model.md — full replacement, energy-label sufficiency, feedback
 FOUNDATION: science/entropy_budget.md — integrated sensitivity area and pointwise heat capacity.
 CONVERSE: science/two_batch_converse.md — posterior Fisher identity, posterior peak, van Trees.
 CONSTRUCTION: science/achievability.md — pilot, tuned degenerate blocks, smoothed logit, exponential moment.
-ROUNDS: science/round_complexity.md — matching fixed-r law and necessary log-log depth.
+ROUNDS: science/round_complexity.md — fixed-r and growing-round converse.
 GENERAL CONSTRUCTION: science/fixed_round_achievability.md — explicit multi-center arrays, all-moment refinement, rare histories, pathwise budget and fixed-r induction.
+GROWING-ROUND CONSTRUCTION: science/growing_round_achievability.md — nested intervals, first-miss risk accounting, exact resource charges, and a two-body star with hub-only measurement.
 PHYSICAL MEANING: science/interpretation.md — sensitivity bandwidth and unpaid implementation costs.
 ATTRIBUTION: references/RELATED_WORK.md and references/references.bib — inherited ingredients, comparisons and literature-access limits.
 REPRODUCE: verification/README.md, verification/checks.py and verification/learning_checks.py.

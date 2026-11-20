@@ -19,9 +19,9 @@ The rigorous comparison is:
 | One fixed nonadaptive batch | $\Theta(N^{-1})$ |
 | Two batches, one intervening Hamiltonian update | $\Theta(N^{-3/2})$ |
 | Every fixed $r$ batches | $\Theta_r(N^{-[2-2^{1-r}]})$ |
-| Desired $O(N^{-2})$ risk | Requires at least $\log_2\log N-O(1)$ batches |
+| Desired $O(N^{-2})$ risk | Sharp depth $\log_2\ln N+O(1)$ batches |
 
-The previously known many-update adaptive strategies illustrate how retuning can approach local Heisenberg-like sensitivity. The contribution here is a **sharp finite-feedback law**, not the invention of feedback thermometry itself. Full comparison and attribution appear in [Related work](../references/RELATED_WORK.md).
+Earlier many-update adaptive strategies illustrate how retuning can approach local Heisenberg-like sensitivity. Here the batch count is an explicit resource in a global minimax theorem. Full comparison and attribution appear in [Related work](../references/RELATED_WORK.md).
 
 ## Why further batches need a different construction
 
@@ -29,7 +29,9 @@ Repeating the same perfectly centered block design would hide an important stati
 
 The [fixed-round construction](fixed_round_achievability.md) spreads each new batch over nearby centers instead. It spends fewer blocks on more distant centers, with polynomial rather than exponential decay. A nearby center remains available on moderately inaccurate histories, and higher polynomial moments pay for the remaining rare histories. At uncertainty width w, the next squared-error scale is of order w/N for a fixed batch count. Starting at w of order N to the power minus1/2 gives the exponent sequence 3/2, 7/4, 15/8. Every batch's full array is fixed before its outputs are read.
 
-## What quantum mechanics does and does not contribute here
+The [growing-round construction](growing_round_achievability.md) uses intervals that always stay nested. If a refinement first misses the true temperature, every later estimate stays in the preceding interval. The error on that history therefore grows at most with the width of that interval. A schedule designed backward from the final target makes the expected losses and qubit charges summable. It also accepts a two-body star probe whenever its central-bit probability has the required inverse-width slope.
+
+## Energy readout and classical feedback
 
 The impossibility theorem is universal over finite-dimensional Gibbs Hamiltonians and quantum measurements. However, each thermal family commutes with itself as $T$ changes when $H$ is fixed. Measuring its energy eigenlabel is statistically sufficient. The attaining protocol uses only classical excitation counts and a classical retuning instruction. Thus the result is an information-geometric constraint on equilibrium quantum *sample design*, rather than a claim of entanglement-enhanced readout or quantum computational speedup.
 
@@ -38,7 +40,7 @@ If the Hamiltonian itself secretly depends on temperature, if coherent bath acce
 ## Costs absent from the qubit-budget statement
 
 - **Time:** A Gibbs state is assumed to be available after full equilibration; the required contact or mixing time may depend strongly on $k$. No total elapsed-time advantage follows from $N^{-3/2}$ alone.
-- **Interaction complexity:** The large excited-state degeneracy of the construction comes from an ideal global $k$-qubit projector Hamiltonian. Synthesis with local couplings may consume resources that negate a sample benefit.
+- **Interaction complexity:** The fixed-round arrays use an ideal global $k$-qubit projector. The growing-round scheme also admits a commuting two-body star with bounded pair strengths and a hub of growing degree. Its central field is of order $k$, and all $k$ spins are charged even though only the hub is read.
 - **Energy and work:** On a fixed positive temperature interval, the tuned block gap is $\Theta(k)$; there is no assertion of constant maximum control energy, constant thermodynamic work, or fault tolerance.
 - **Bath disturbance:** The reservoir is assumed large enough to supply the same unknown temperature to all thermalizations. A finite reservoir that cools due to measurement is a different joint inference problem.
 - **Prior and statistics:** The interval $[a,b]$ is fixed as $N$ grows; a prior already localized on a scale shrinking with $N$, an atomic/discrete prior, or an expected-only sample budget changes the task.
@@ -59,4 +61,4 @@ The [verification code](../verification/README.md) evaluates the risk by summing
 
 ## Open but nonessential extensions
 
-A proof of sufficiency at $O(\log\log N)$ rounds, finite-control-locality costs, and sensitivity to noninstantaneous thermalization remain open. The fixed-round construction has stage-dependent moment constants and cannot establish the growing-round claim by substitution.
+Optimal leading constants, bounded-degree probe design and sensitivity to noninstantaneous thermalization remain open in the present account.

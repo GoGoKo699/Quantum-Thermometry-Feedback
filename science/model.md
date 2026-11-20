@@ -60,7 +60,7 @@ This reduction is valid for any state that is a full, known-basis Gibbs replacem
 - The integer $`N`$ is a **pathwise** cap: any branch, including failed calibration records, consumes at most $`N`$ qubits. Expected-budget policies with rare enormous batches are different.
 - For two rounds, $`H_1`$ is fixed before observations; $`H_2(Y)`$ may depend on the complete first classical record $`Y`$. The second batch has no subsequent retuning.
 - The lower bound allows arbitrary within-batch many-body Hamiltonians, quantum processing, biased estimators, and first-to-second quantum memory under the Gibbs-replacement contract. It need not assume the product form used by the construction.
-- The upper bound uses ordinary fixed-gap calibration qubits and independently prepared, energy-degenerate many-body blocks. It makes no hardware preparation-time, locality or coupling-strength guarantee.
+- The fixed-round upper bounds use ordinary calibration qubits and degenerate many-body blocks. The [growing-round upper bound](growing_round_achievability.md) also allows commuting star blocks with bounded pair strengths, growing hub degree and a single central measurement. Neither resource count includes equilibration time.
 - Numerical constants may depend on $`T_\pm`$ and on fixed selected gaps, but not on $`N`$. The asymptotic statements concern $`N\to\infty`$ at fixed prior interval.
 
 For attribution and alternate temperature losses, see [Related work](../references/RELATED_WORK.md).

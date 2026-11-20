@@ -1,8 +1,8 @@
-# From one retuning to every fixed feedback depth
+# From one retuning to quadratic global precision
 
 [Learning route](README.md) · [Source bridge](ANCHOR.md) · [Milestones](MILESTONES.md) · [Exact model](../science/model.md)
 
-The central question is how much a paid calibration record can improve the next equilibrium experiment. We first follow one complete two-batch procedure, then build the array that makes the same idea work for every fixed number of batches.
+The central question is how much a paid calibration record can improve the next equilibrium experiment. We follow one two-batch procedure, then look at two ways to refine the temperature further. A weighted array attains the best error exponent at any fixed batch count. A nested-interval schedule reaches quadratic global precision when the batch count grows.
 
 ## One counting thermometer
 
@@ -251,22 +251,42 @@ The constants may depend on r and the fixed temperature interval. The law concer
 | 3 | 2 | $`N^{-7/4}`$ |
 | 4 | 3 | $`N^{-15/8}`$ |
 
-The three-batch entry is now attained by an explicit protocol. This is the scientific change beyond the earlier record, which had matching bounds only for two batches. It establishes exponents, not optimal leading constants or an assertion about which design is best at a particular finite N.
+The three-batch entry follows from the weighted array. The hierarchy gives the best exponent at each fixed depth and permits constants that depend on that depth.
 
 ## Why fixed-round attainment does not settle growing depth
 
-Each additional fixed batch brings the exponent closer to two. It is tempting to put a growing r directly into the formula and declare quadratic global risk. That substitution is not justified: the upper-bound constants and required moment orders can grow with r, the allocation B = floor(N/r) changes, and the proof's large-budget conditions must hold at every stage.
-
-A separate converse has constants uniform in the number of batches. It shows that attaining risk at most K times N to the power -2, with one constant K independent of N, requires
+The fixed-round exponents approach two as r grows. Their constants and moment orders can also grow, so a family of policies with a growing batch count needs estimates uniform in r. For the lower bound, the pointwise heat-capacity ceiling and the total qubit budget give a round-uniform information bound. A single constant K in a global risk guarantee of at most K/N squared forces
 
 ```math
 r(N)\ge\log_2\ln N-O(1).
 ```
 
-This is a necessary number of preparation batches. A matching growing-r schedule and its uniform error analysis remain unproved here. The fixed-r hierarchy settles every fixed depth while leaving that different asymptotic question open.
+## How a growing schedule reaches quadratic risk
 
-## What has and has not been established
+The growing-round construction carries an **interval** forward after each batch. The first interval is the entire known temperature range in log coordinates. The next batch centers its probe at the midpoint of the current interval and picks the block size from its planned width. Within the current interval, the slope of the binary response is bounded below by a constant divided by the planned width. The sample mean can therefore locate the parameter inside a shorter interval when the current interval contains it.
 
-The project now supplies matching minimax exponents and an attaining method for every fixed number of preparation batches. The weighted array is the step that protects successive refinements against all earlier calibration histories; high local sensitivity alone would not prove the result. The converse also allows arbitrary quantum processing and retained memory under the stated Gibbs-replacement access, while the construction needs only binary energy readout.
+The update clips the sample mean to the response range, inverts it and intersects the shorter interval with the old one. This works for all counts, including zero and complete excitation. The new interval always contains the estimate used to center it, so the procedure continues on every history. If the true temperature falls outside for the first time, all later estimates still lie in the preceding interval, which contained it. The squared error on that history is bounded by the **preceding interval's squared width**.
 
-Complete equilibrium and a controllable degenerate many-body spectrum remain supplied resources. Gaps and block sizes grow with the budget. There is no local-Hamiltonian implementation, thermalization-time guarantee, optimal constant or entangled-measurement advantage in the theorem. Faster error decay in charged Gibbs samples does not by itself imply faster laboratory operation. [Physical interpretation](../science/interpretation.md) separates those costs from the proved sample-budget result.
+Write w for the preceding half-width bound, v for the desired next half-width and B for the qubits in the batch. Approximately Bw independent blocks fit in that batch. A log-temperature error of order v changes the mean binary outcome by order v/w. The exponent in the one-stage concentration bound is therefore of order
+
+```math
+Bw\,(v/w)^2 = Bv^2/w.
+```
+
+The [proof](../science/growing_round_achievability.md#allocate-radii-and-qubits-backward-from-the-target-precision) chooses half-widths backward from a final value of order 1/N. The step indexed by h shrinks the half-width from at most $`W_h/N`$ to $`W_{h-1}/N`$. The choice $`W_h=A4^h\exp(2^h)`$ reaches the fixed starting interval in about log base two of log N steps. The wider early intervals can lead to larger errors, so the schedule gives them lower failure allowances. It uses enough blocks at step h to make the conditional probability of missing at most $`2^{-h}(W_0/W_h)^2`$.
+
+Multiplying the failure allowance by the preceding interval's squared width, at most $`4(W_h/N)^2`$, leaves $`4\cdot2^{-h}(W_0/N)^2`$. Summing these costs over the possible first misses and including the successful histories bounds mean-square error by $`5(W_0/N)^2`$. The width schedule lets these error allowances fit in the total qubit budget.
+
+This reaches quadratic global mean-square risk in $`\log_2\ln N+O(1)`$ batches. Together with the round-uniform converse, it identifies the required batch count up to an additive constant. The result uses a fixed positive temperature interval and a deterministic total budget N.
+
+## Reading a single spin in a star probe
+
+The schedule needs a binary probe whose response is steep across its current interval. A second implementation uses a center spin coupled to a set of leaf spins. When the center is in one state, the leaves have an excitation gap. In the other center state they are free. The center's energy offset balances the two equilibrium weights at the chosen temperature. Since each leaf contributes to the weights, adding more leaves makes the center's probability change more sharply around that point.
+
+The [star calculation](../science/growing_round_achievability.md#two-body-star-blocks-and-single-spin-readout) shows that the center outcome provides the required slope. The Gibbs Hamiltonian has commuting two-spin interactions, and the protocol measures only the center spin of each block. Every leaf and center still counts toward the qubit budget. The center has growing degree and a growing total field, and the protocol assumes full equilibration for each paid preparation.
+
+## What the two feedback laws establish
+
+For a fixed batch count, the weighted array attains the matching global error exponent and explicitly controls inaccurate calibration histories. For quadratic global mean-square risk, the nested intervals attain the separate growing-depth threshold by bounding the cost of the first failure. Both operate in the same equilibrium-access model and require only binary observations in their attaining protocols. The converse allows arbitrary measurements and retained quantum memory.
+
+The sample-budget results leave optimal constants, bounded-degree realizations and time to equilibrate open. [Physical interpretation](../science/interpretation.md) connects these assumptions to laboratory costs.
