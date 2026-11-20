@@ -106,7 +106,13 @@ It cancels the doubly exponential part of the widths. Each stage costs at most $
 =\frac{16C_DN}{A}\left(2+\tfrac{20}{9}\ln2+\tfrac{\ln2-2}{3}\right).
 ```
 
-Choose $`A=\max\{1,16C_D(2+\tfrac{20}{9}\ln2+\tfrac{\ln2-2}{3})\}`$. This charges no more than $`N`$ qubits on every history. As $`N`$ grows, minimality means $`2^R+dR\ge\ln(ND/A)`$ and $`2^{R-1}+d(R-1)\lt\ln(ND/A)`$. Since $`R\le2^R`$, these inequalities give $`R=\log_2\ln N+O(1)`$.
+Choose $`A=\max\{1,16C_D(2+\tfrac{20}{9}\ln2+\tfrac{\ln2-2}{3})\}`$. This charges no more than $`N`$ qubits on every history. For a nonzero batch count, the stopping rule gives
+
+```math
+2^{R-1}+d(R-1)\lt\ln(ND/A)\le 2^R+dR.
+```
+
+Since the batch count is at most its power of two, the inequalities give $`R=\log_2\ln N+O(1)`$ as the budget grows.
 
 ## All records contribute to the risk
 
